@@ -1,0 +1,78 @@
+form {
+  width: 600px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+.input {
+display: flex;
+margin-bottom: 10px;
+margin-right: 10px;
+/* width: 100%; */
+
+}
+
+
+/* .inputBox {
+  display: block;
+  background-color: bisque;
+  border: none;
+  border-radius: 3px;
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+} */
+
+.button-submit {
+  padding: 10px;
+  background-color: tan;
+  width: 100%;
+  border: none;
+  border-radius: 3px;
+  margin-top: 6px;
+  font-weight: bold;
+  color: dimgrey;
+}
+
+.input {
+  display: inline-block;
+}
+
+input.followup {
+  display: inline-block;
+
+}
+label.recheck {
+  display: inline;
+}
+
+
+.input-goal {
+  font-size: 50px;
+}
+
+.input-required {
+  font-size: 30px;
+  height: 50px;
+  width: 500px;
+}
+
+.input-principal {
+  /* display: inline-block; */
+  width: 190px;
+}
+
+.input-interest {
+  /* display: inline-block; */
+  width: 190px;
+}
+.input-period {
+  /* display: inline-block; */
+  width: 190px;
+}
+
+
+.container {
+  display: flex;
+}
+
+ 

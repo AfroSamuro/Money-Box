@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,10 +8,43 @@
   <title>Копилка</title>
   <link rel="stylesheet" href="./styles/style.css">
 </head>
+
 <body>
+  <main>
+    <form>
+      <label class="input ">
+        <!-- Цель -->
+        <input class=" input-goal" type="text" name="goal" placeholder="Введите цель">
+      </label>
+      <label class="input" for="required">
+        Требуемая сумма:
+        <input class="inputBox input-required"  name="required" value="100000" placeholder="Введите требуемую сумму">
+      </label>
+      <div class="container">
+      <label class="input">
+        Стартовая сумма:
+        <input class="inputBox input-principal"  name="principal" value="10000" placeholder="Введите стартовую сумму">
+      </label>
+      <label class="input">
+        Процентная ставка:
+        <input class="inputBox input-interest"  name="interest" value="5" placeholder="Введите процентную ставку">
+      </label>
+      <label class="input">
+        Срок (в мес.):
+        <input class="inputBox input-period" type="number" name="period" value="6" placeholder="Введите срок">
+      </label>
+    </div>
+      <label class="input label-replenishment">
+        Ежемесячное пополнение:<br>
+        <input class=" input-replenishment"  name="replenishment" placeholder="Сумма для пополнения">
+      </label>
+
+      <button class="button-submit">Отправить</button>
+    </form>
+  </main>
 
 
-  
   <script type="module" src="./scripts/script.js"></script>
 </body>
+
 </html>
