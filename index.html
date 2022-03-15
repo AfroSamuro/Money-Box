@@ -13,23 +13,29 @@
   <main>
     <form action="" class="goal__form">
 
-        <label for="title__input"></label>
-        <input type="text" name="title__input" placeholder="Название" class="form__title">
+        <label for="title__input">Цель</label>
+        <input type="text" name="title__input" placeholder="Название" class="form__title" required>
       
-        <label for="need__input"></label>
-        <input type="number" name="need__input" placeholder="Цель, руб." class="form__need inputBox" step="0.01">
+        <label for="need__input">Требуемая сумма:</label>
+        <input type="number" name="need__input" placeholder="Цель, руб." class="form__need inputBox" step="0.01" required>
 
 
       <div class="form__lotsOfInputs">
-        <label for="form__have"></label>
-        <input type="number" name="form__have" placeholder="Нач. взнос" class="form__have inputBox" step="0.01">
-        <label for="form__percent"></label>
-        <input type="number" name="form__percent" placeholder="Процент, %" class="form__percent inputBox" step="0.1">
-        <label for="form__time"></label>
-        <input type="number" name="form__time" placeholder="Срок, мес." class="form__time inputBox">
+        <div>
+        <label for="form__have">Стартовая сумма:</label>
+        <input type="number" name="form__have" placeholder="Нач. взнос" class="form__have inputBox" step="0.01" required>
+      </div>
+      <div>
+        <label for="form__percent">Процентная ставка:</label>
+        <input type="number" name="form__percent" placeholder="Процент, %" class="form__percent inputBox" step="0.1" required>
+      </div>
+      <div>
+        <label for="form__time">Срок (в мес.):</label><br>
+        <input type="number" name="form__time" placeholder="Срок, мес." class="form__time inputBox" required>
         <input type="range" min="1" max="12" value="4" oninput="" class="form__dragger">
       </div>
-
+      </div>
+      <label for="form__output">Ежемесячное пополнение:</label>
       <input class="form__output" placeholder="***" name="form__output" readonly>
 
       <div class="form__make">
