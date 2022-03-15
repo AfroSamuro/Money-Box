@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,10 +8,40 @@
   <title>Копилка</title>
   <link rel="stylesheet" href="./styles/style.css">
 </head>
+
 <body>
 
+  <main>
+    <form action="" class="goal__form">
 
-  
+        <label for="title__input"></label>
+        <input type="text" name="title__input" placeholder="Название" class="form__title">
+      
+        <label for="need__input"></label>
+        <input type="number" name="need__input" placeholder="Цель, руб." class="form__need">
+
+
+      <div class="form__lotsOfInputs">
+        <label for="form__have"></label>
+        <input type="number" name="form__have" placeholder="Нач. взнос" class="form__have">
+        <label for="form__percent"></label>
+        <input type="number" name="form__percent" placeholder="Процент, %" class="form__percent">
+        <label for="form__time"></label>
+        <input type="number" name="form__time" placeholder="Срок, мес." class="form__time">
+        <input type="range" min="1" max="12" value="4" oninput="" class="form__dragger">
+      </div>
+
+      <div class="form__output">***</div>
+
+      <div class="form__make">
+        <button class="make__create">Создать</button>
+        <button class="make__cancel">Сброс</button>
+      </div>
+
+    </form>
+  </main>
+
   <script type="module" src="./scripts/script.js"></script>
 </body>
+
 </html>

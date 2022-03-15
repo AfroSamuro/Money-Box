@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px auto;
+    width: 36%;
+    padding: 20px 0;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: #28caff30;
+}
+
+input {
+    background-color: rgb(10, 180, 247);;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+input::placeholder {
+    color: rgba(252, 247, 247, 0.795);
+}
+
+button {
+    background-color: rgb(10, 180, 247);
+    padding: 5px;
+    border-radius: 10px;
+    width: 70px;
+}
+
+.form__title {
+    width: 220px;
+    height: 50px;
+    font-size: 26px;
+    text-align: center;
+}
+
+.form__need {
+    width: 150px;
+    height: 40px;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.form__have, .form__percent, .form__time {
+    width: 100px;
+}
+
+.form__lotsOfInputs {
+    width: 90%;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form__output {
+    margin-top: 10px;
+    width: 150px;
+    height: 50px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgb(10, 180, 247);
+}
+
+.form__make {
+    display: flex;
+    justify-content: space-between;
+    width: 190px;
+    margin-top: 10px;
+}
+
+.make__create {
+    background-color: rgb(56, 199, 139);
+}
