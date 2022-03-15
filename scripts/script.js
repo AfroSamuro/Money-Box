@@ -18,16 +18,22 @@ userForm.addEventListener('submit', (event) => {
 
   const data = new FormData(event.target);
 
-  console.log(`Цель: ${data.get('title__input')}`);
-  console.log(`Требуемая сумма: ${data.get('need__input')}`);
-  console.log(`Стартовая сумма ${data.get('form__have')}`);
-  console.log(`Процентная ставка: ${data.get('form__percent')}`);
-  console.log(`Срок: ${data.get('form__time')}`);
-  console.log(`Сумма пополнения: ${data.get('form__output')}`);
-  alert('Цель добавлена');
+  let blackscreen = document.createElement('div');
+  let loadDiv = document.createElement('div');
+  blackscreen.classList.add('load');
+  loadDiv.classList.add('loadDiv');
+  loadDiv.textContent = 'Цель добавлена!';
+  document.querySelector('main').append(blackscreen);
+  document.querySelector('.load').append(loadDiv);
+
+  setTimeout(() => {
+    document.querySelector('.load').remove()
+  }, 1000)
+
+  userForm.reset();
+
   array.push(new Target(`${data.get('title__input')}`, `${data.get('need__input')}`, `${data.get('form__have')}`,
     `${data.get('form__percent')}`, `${data.get('form__time')}`, `${data.get('form__output')}`));
-  console.log(array);
 });
 
 document.querySelectorAll('.inputBox').forEach((element) => {
@@ -84,6 +90,14 @@ document.querySelector('.createBtn').addEventListener('click', () => {
   form.classList.remove('hidden');
 })
 
+let slider = document.querySelector('.form__dragger');
+let inputBox = document.querySelector('.form__time');
 
 
+slider.addEventListener('input', (e) => {
+  inputBox.value = e.target.value
+})
 
+inputBox.addEventListener('input', (e) => {
+  slider.value = e.target.value
+})
