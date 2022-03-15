@@ -77,3 +77,7 @@ a {
     width: 180px;
     margin-right: 50px;
 }
+
+button {
+  cursor: pointer;
+}
