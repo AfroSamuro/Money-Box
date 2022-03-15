@@ -12,7 +12,6 @@ class Target {
   }
 }
 
-
 const userForm = document.querySelector('form');
 
 userForm.addEventListener('submit', (event) => {
@@ -20,16 +19,9 @@ userForm.addEventListener('submit', (event) => {
 
   const data = new FormData(event.target);
 
-  console.log(`Цель: ${data.get('title__input')}`);
-  console.log(`Требуемая сумма: ${data.get('need__input')}`);
-  console.log(`Стартовая сумма ${data.get('form__have')}`);
-  console.log(`Процентная ставка: ${data.get('form__percent')}`);
-  console.log(`Срок: ${data.get('form__time')}`);
-  console.log(`Сумма пополнения: ${data.get('form__output')}`);
-  alert('Цель добавлена');
   array.push(new Target(`${data.get('title__input')}`, `${data.get('need__input')}`, `${data.get('form__have')}`,
     `${data.get('form__percent')}`, `${data.get('form__time')}`, `${data.get('form__output')}`));
-  console.log(array);
+  userForm.reset();
 });
 
 document.querySelectorAll('.inputBox').forEach((element) => {
@@ -43,13 +35,16 @@ document.querySelectorAll('.inputBox').forEach((element) => {
 
     document.querySelector('.form__output').value = (required - (principal * ((1 + interest / (100 * 12)) ** period))) * (interest / (100 * 12)) * (1 / ((1 + interest / (100 * 12)) ** period - 1));
     document.querySelector('.form__output').value = Number(document.querySelector('.form__output').value).toFixed(2);
+    
+    if (document.querySelector('.form__output').value <= 0) {
+      document.querySelector('.form__output').value = '--------------------';
+    }
   })
 })
 
 document.querySelector('.make__cancel').addEventListener('click', () => {
   userForm.reset();
 });
-
 
 document.querySelector('.listBtn').addEventListener('click', () => {
   const form = document.querySelector('.goal__form');
@@ -89,7 +84,6 @@ document.querySelector('.listBtn').addEventListener('click', () => {
   }
 })
 
-
 document.querySelector('.createBtn').addEventListener('click', () => {
   const form = document.querySelector('.goal__form');
   form.classList.remove('hidden');
@@ -97,8 +91,9 @@ document.querySelector('.createBtn').addEventListener('click', () => {
   document.querySelector('.list__goals-none').classList.add('hidden');
 });
 
-
-
+document.querySelector('.logoBtn').addEventListener('click', () => {
+  location.reload();
+})
 
 
 
