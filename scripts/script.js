@@ -51,3 +51,9 @@ document.querySelectorAll('.inputBox').forEach((element) => {
     document.querySelector('.form__output').value = Number(document.querySelector('.form__output').value).toFixed(2);
   })
 })
+
+document.querySelector('.make__cancel').addEventListener('click', () => {
+  userForm.reset();
+})
+
+
