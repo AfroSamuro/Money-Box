@@ -1,0 +1,62 @@
+
+.list__goals-none {
+    display: flex;
+    height: 600px;
+    font-size: 36px;
+    justify-content: center;
+    align-items: center;
+}
+
+.list__button-delete {
+    margin-top: 2px;
+    margin-left: 140px;
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: fixed;
+}
+
+.list__of-goals {
+    display: flex;
+    padding: 60px 80px 0 80px;
+    flex-wrap: wrap;
+}
+
+.list__data {
+    width: 350px;
+    height: 180px;
+    border: 2px solid black;
+    border-radius: 10px;
+    text-align: center;
+    margin: 0 60px 80px 0;
+}
+
+.list__head {
+    height: 50px;
+    background-color: rgb(63, 226, 255);
+    border-radius: 9px 9px 0 0;
+    justify-content: center;
+}
+
+.list__title {
+    font-size: 38px;
+}
+
+.list__final-amount {
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+.list__monthly {
+    font-size: 30px;
+    margin-top: 10px;
+}
+
+hr {
+    margin-top: 10px;
+}
+
+.hidden {
+    display: none;
+}
