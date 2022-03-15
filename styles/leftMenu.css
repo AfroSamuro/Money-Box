@@ -15,7 +15,7 @@
     border-radius: 4px;
     border: 0;
     cursor: pointer;
-    
+    font-weight: bold;
 }
 .listBtn {
     width: 100%;    
@@ -25,5 +25,5 @@
     border-radius: 4px; 
     border: 0; 
     cursor: pointer;  
-
+    font-weight: bold;
 }
