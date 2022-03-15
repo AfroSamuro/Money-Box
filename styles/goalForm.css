@@ -31,7 +31,7 @@ button {
     background-color: rgb(10, 180, 247);
     padding: 5px;
     border-radius: 10px;
-    width: 70px;
+    width: 80px;
 }
 
 .form__title {
@@ -83,6 +83,8 @@ button {
 
 .make__create {
     background-color: rgb(56, 199, 139);
+    
+
 }
 
 input::-webkit-outer-spin-button,
