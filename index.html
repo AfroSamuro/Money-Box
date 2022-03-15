@@ -45,18 +45,18 @@
       <input type="text" name="title__input" placeholder="Название" class="form__title" required>
 
       <label for="need__input">Требуемая сумма:</label>
-      <input type="number" name="need__input" placeholder="Цель, руб." class="form__need inputBox" step="0.01" required>
+      <input type="number" min="0" name="need__input" placeholder="Цель, руб." class="form__need inputBox" step="0.01" required>
 
 
       <div class="form__lotsOfInputs">
         <div>
           <label for="form__have">Стартовая сумма:</label>
-          <input type="number" name="form__have" placeholder="Нач. взнос" class="form__have inputBox" step="0.01"
+          <input type="number" min="0" name="form__have" placeholder="Нач. взнос" class="form__have inputBox" step="0.01"
             required>
         </div>
         <div>
           <label for="form__percent">Процентная ставка:</label>
-          <input type="number" name="form__percent" placeholder="Процент, %" class="form__percent inputBox" step="0.1"
+          <input type="number" min="0" name="form__percent" placeholder="Процент, %" class="form__percent inputBox" step="0.1"
             required>
         </div>
         <div>
@@ -66,7 +66,7 @@
         </div>
       </div>
       <label for="form__output">Ежемесячное пополнение:</label>
-      <input class="form__output" placeholder="***" name="form__output" readonly>
+      <input class="form__output" min="0" placeholder="***" name="form__output" readonly>
 
       <div class="form__make">
         <button class="make__create">Создать</button>
