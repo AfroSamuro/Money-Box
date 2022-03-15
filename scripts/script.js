@@ -19,9 +19,22 @@ userForm.addEventListener('submit', (event) => {
 
   const data = new FormData(event.target);
 
+  let blackscreen = document.createElement('div');
+  let loadDiv = document.createElement('div');
+  blackscreen.classList.add('load');
+  loadDiv.classList.add('loadDiv');
+  loadDiv.textContent = 'Цель добавлена!';
+  document.querySelector('main').append(blackscreen);
+  document.querySelector('.load').append(loadDiv);
+
+  setTimeout(() => {
+    document.querySelector('.load').remove()
+  }, 1000)
+
+  userForm.reset();
+
   array.push(new Target(`${data.get('title__input')}`, `${data.get('need__input')}`, `${data.get('form__have')}`,
     `${data.get('form__percent')}`, `${data.get('form__time')}`, `${data.get('form__output')}`));
-  userForm.reset();
 });
 
 document.querySelectorAll('.inputBox').forEach((element) => {
@@ -95,5 +108,14 @@ document.querySelector('.logoBtn').addEventListener('click', () => {
   location.reload();
 })
 
+let slider = document.querySelector('.form__dragger');
+let inputBox = document.querySelector('.form__time');
 
 
+slider.addEventListener('input', (e) => {
+  inputBox.value = e.target.value
+})
+
+inputBox.addEventListener('input', (e) => {
+  slider.value = e.target.value
+})
