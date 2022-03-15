@@ -2,6 +2,7 @@ let array = [];
 
 class Target {
   constructor(goal, required, principal, interest, period, replenishment) {
+    this.id = new Date().getTime()
     this.goal = goal;
     this.required = required;
     this.principal = principal;
@@ -10,6 +11,7 @@ class Target {
     this.replenishment = replenishment;
   }
 }
+
 
 const userForm = document.querySelector('form');
 
@@ -44,12 +46,9 @@ document.querySelectorAll('.inputBox').forEach((element) => {
   })
 })
 
-
-
-
 document.querySelector('.make__cancel').addEventListener('click', () => {
   userForm.reset();
-})
+});
 
 
 document.querySelector('.listBtn').addEventListener('click', () => {
@@ -60,10 +59,10 @@ document.querySelector('.listBtn').addEventListener('click', () => {
     document.querySelector('.list__goals-none').classList.remove('hidden');
 
   } else {
-
     document.querySelector('.list__goals-none').classList.add('hidden');
     document.querySelector('.list__of-goals').classList.remove('hidden');
     document.querySelector('.list__of-goals').innerHTML = '';
+
     array.forEach((elem) => {
       let item = document.createElement('div');
       item.classList.add('list__data');
@@ -75,14 +74,30 @@ document.querySelector('.listBtn').addEventListener('click', () => {
       <hr>
       <p class="list__monthly">Пополнение: ${elem.replenishment} руб</p>`
       document.querySelector('.list__of-goals').append(item);
+
+      item.querySelector('.list__button-delete').addEventListener('click', (e) => {
+        e.preventDefault();
+        const itemIndex = array.findIndex(item => item.id === elem.id);
+        array.splice(itemIndex, 1);
+        item.remove();
+
+        if (array.length === 0) {
+          document.querySelector('.list__goals-none').classList.remove('hidden');
+        }
+      })
     });
   }
 })
 
+
 document.querySelector('.createBtn').addEventListener('click', () => {
   const form = document.querySelector('.goal__form');
   form.classList.remove('hidden');
-})
+  document.querySelector('.list__of-goals').classList.add('hidden');
+  document.querySelector('.list__goals-none').classList.add('hidden');
+});
+
+
 
 
 
