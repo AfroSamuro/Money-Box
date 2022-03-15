@@ -20,16 +20,16 @@ userForm.addEventListener('submit', (event) => {
 
   const data = new FormData(event.target);
 
-  console.log(`Цель: ${data.get('title__input')}`);
-  console.log(`Требуемая сумма: ${data.get('need__input')}`);
-  console.log(`Стартовая сумма ${data.get('form__have')}`);
-  console.log(`Процентная ставка: ${data.get('form__percent')}`);
-  console.log(`Срок: ${data.get('form__time')}`);
-  console.log(`Сумма пополнения: ${data.get('form__output')}`);
+  // console.log(`Цель: ${data.get('title__input')}`);
+  // console.log(`Требуемая сумма: ${data.get('need__input')}`);
+  // console.log(`Стартовая сумма ${data.get('form__have')}`);
+  // console.log(`Процентная ставка: ${data.get('form__percent')}`);
+  // console.log(`Срок: ${data.get('form__time')}`);
+  // console.log(`Сумма пополнения: ${data.get('form__output')}`);
   alert('Цель добавлена');
   array.push(new Target(`${data.get('title__input')}`, `${data.get('need__input')}`, `${data.get('form__have')}`,
     `${data.get('form__percent')}`, `${data.get('form__time')}`, `${data.get('form__output')}`));
-  console.log(array);
+  // console.log(array);
 });
 
 document.querySelectorAll('.inputBox').forEach((element) => {
@@ -88,7 +88,6 @@ document.querySelector('.listBtn').addEventListener('click', () => {
     });
   }
 })
-
 
 document.querySelector('.createBtn').addEventListener('click', () => {
   const form = document.querySelector('.goal__form');
