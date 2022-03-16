@@ -51,23 +51,7 @@ userForm.addEventListener('submit', (event) => {
 
 });
 
-document.querySelectorAll('.inputBox').forEach((element) => {
-  element.addEventListener('input', () => {
-    let principal = document.querySelector('.form__have').value;
-    let interest = document.querySelector('.form__percent').value;
-    let period = document.querySelector('.form__time').value;
-    let required = document.querySelector('.form__need').value;
 
-    if (!(principal && interest && period && required)) return;
-
-    document.querySelector('.form__output').value = (required - (principal * ((1 + interest / (100 * 12)) ** period))) * (interest / (100 * 12)) * (1 / ((1 + interest / (100 * 12)) ** period - 1));
-    document.querySelector('.form__output').value = Number(document.querySelector('.form__output').value).toFixed(2);
-
-    if (document.querySelector('.form__output').value <= 0) {
-      document.querySelector('.form__output').value = '--------------------';
-    }
-  })
-})
 
 document.querySelector('.make__cancel').addEventListener('click', () => {
   userForm.reset();
@@ -88,13 +72,15 @@ document.querySelector('.listBtn').addEventListener('click', () => {
     array.forEach((elem) => {
       let item = document.createElement('div');
       item.classList.add('list__data');
-      item.innerHTML = `
+      item.innerHTML =
+        `
       <div class="list__head">
       <button class="list__button-delete">X</button>
       <p class="list__title">${elem.goal}</p>
       </div><p class="list__final-amount">Сумма: ${elem.required} руб</p>
       <hr>
-      <p class="list__monthly">Пополнение: ${elem.replenishment} руб</p>`
+      <p class="list__monthly">Пополнение: ${elem.replenishment} руб</p>
+      `
       document.querySelector('.list__of-goals').append(item);
 
       item.addEventListener('click', (e) => {
@@ -139,12 +125,15 @@ document.querySelector('.listBtn').addEventListener('click', () => {
         </div>
   
       </form>`;
-      document.querySelector('.new-form').append(changeitem);
-      document.querySelector('.make__discard').addEventListener('click', () =>{
-        document.querySelector('.new-form').innerHTML ='';
+        document.querySelector('.new-form').append(changeitem);
+        document.querySelector('.make__discard').addEventListener('click', () => {
+          document.querySelector('.new-form').innerHTML = '';
+        })
+        document.querySelector('.make__change').addEventListener('click', (e) => {
+          e.preventDefault();
+        })
       })
-      })
-      
+
 
       item.querySelector('.list__button-delete').addEventListener('click', (e) => {
         e.stopPropagation();
@@ -159,6 +148,24 @@ document.querySelector('.listBtn').addEventListener('click', () => {
       })
     });
   }
+})
+
+document.querySelectorAll('.inputBox').forEach((element) => {
+  element.addEventListener('input', () => {
+    let principal = document.querySelector('.form__have').value;
+    let interest = document.querySelector('.form__percent').value;
+    let period = document.querySelector('.form__time').value;
+    let required = document.querySelector('.form__need').value;
+
+    if (!(principal && interest && period && required)) return;
+
+    document.querySelector('.form__output').value = (required - (principal * ((1 + interest / (100 * 12)) ** period))) * (interest / (100 * 12)) * (1 / ((1 + interest / (100 * 12)) ** period - 1));
+    document.querySelector('.form__output').value = Number(document.querySelector('.form__output').value).toFixed(2);
+
+    if (document.querySelector('.form__output').value <= 0) {
+      document.querySelector('.form__output').value = '--------------------';
+    }
+  })
 })
 
 document.querySelector('.createBtn').addEventListener('click', () => {

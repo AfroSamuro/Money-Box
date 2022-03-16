@@ -77,44 +77,6 @@
 
     </form>
 
-    <form action="" class="change__form hidden">
-
-      <label for="title__input">Цель</label>
-      <input type="text" name="title__input" placeholder="Название" class="change__title" required>
-
-      <label for="need__input">Требуемая сумма:</label>
-      <input type="number" min="0" name="need__input" placeholder="Цель, руб." class="change__need inputBox" step="0.01"
-        required>
-
-
-      <div class="change__lotsOfInputs">
-        <div>
-          <label for="change__have">Стартовая сумма:</label>
-          <input type="number" min="0" name="change__have" placeholder="Нач. взнос" class="change__have inputBox"
-            step="0.01" required>
-        </div>
-        <div>
-          <label for="change__percent">Процентная ставка:</label>
-          <input type="number" min="0" name="change__percent" placeholder="Процент, %" class="change__percent inputBox"
-            step="0.1" required>
-        </div>
-        <div>
-          <label for="change__time">Срок (в мес.):</label><br>
-          <input type="number" name="change__time" placeholder="Срок, мес." class="change__time inputBox" required>
-          <input type="range" min="1" max="12" class="change__dragger inputBox">
-        </div>
-      </div>
-
-      <label for="change__output">Ежемесячное пополнение:</label>
-      <input class="change__output" min="0" placeholder="***" name="change__output" readonly>
-
-      <div class="change__make">
-        <button class="make__create">Сохранить</button>
-        <button class="make__cancel" type="button">Отмена</button>
-      </div>
-
-    </form>
-
     <div class="list__goals-none hidden">
       <p>Cписок целей пуст</p>
     </div>
