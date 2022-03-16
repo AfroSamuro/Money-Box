@@ -3,6 +3,7 @@
 @import url('./header.css');
 @import url('./leftMenu.css');
 @import url('./list_of_goals.css');
+@import url('./change.css');
 
 * {
     padding: 0;

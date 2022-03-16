@@ -45,13 +45,27 @@ document.querySelectorAll('.inputBox').forEach((element) => {
     let required = document.querySelector('.form__need').value;
 
     if (!(principal && interest && period && required)) return;
+    
+
+
+    let slider = document.querySelector('.form__dragger');
+    let inputBox = document.querySelector('.form__time');
+    slider.addEventListener('input', (e) => {
+      inputBox.value = e.target.value;
+    })
+    inputBox.addEventListener('input', (e) => {
+      slider.value = e.target.value
+    })
+
 
     document.querySelector('.form__output').value = (required - (principal * ((1 + interest / (100 * 12)) ** period))) * (interest / (100 * 12)) * (1 / ((1 + interest / (100 * 12)) ** period - 1));
     document.querySelector('.form__output').value = Number(document.querySelector('.form__output').value).toFixed(2);
-    
+
     if (document.querySelector('.form__output').value <= 0) {
       document.querySelector('.form__output').value = '--------------------';
     }
+
+
   })
 })
 
@@ -82,6 +96,10 @@ document.querySelector('.listBtn').addEventListener('click', () => {
       <hr>
       <p class="list__monthly">Пополнение: ${elem.replenishment} руб</p>`
       document.querySelector('.list__of-goals').append(item);
+
+      item.addEventListener('click', (e) => {
+        alert(`${elem.id}`);
+      })
 
       item.querySelector('.list__button-delete').addEventListener('click', (e) => {
         e.preventDefault();
@@ -119,3 +137,4 @@ slider.addEventListener('input', (e) => {
 inputBox.addEventListener('input', (e) => {
   slider.value = e.target.value
 })
+
