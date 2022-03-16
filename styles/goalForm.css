@@ -82,7 +82,7 @@ button {
     margin-top: 10px;
 }
 
-.make__create {
+.make__create, .make__change {
     background-color: rgb(56, 199, 139);
 
 
