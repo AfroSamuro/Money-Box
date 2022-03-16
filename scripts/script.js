@@ -98,7 +98,6 @@ document.querySelector('.listBtn').addEventListener('click', () => {
       document.querySelector('.list__of-goals').append(item);
 
       item.addEventListener('click', (e) => {
-        alert(`${elem.id}`);
         let grayarea = document.createElement('div');
         grayarea.classList.add('gray');
         document.querySelector('.new-form').append(grayarea);
@@ -135,8 +134,8 @@ document.querySelector('.listBtn').addEventListener('click', () => {
         <input class="form__output" min="0" placeholder="***" name="form__output" readonly value="${elem.replenishment}">
   
         <div class="form__make">
-          <button class="make__create make__change">Изменить</button>
-          <button class="make__cancel make__discard" type="button">Отмена</button>
+          <button class="make__change">Изменить</button>
+          <button class="make__discard" type="button">Отмена</button>
         </div>
   
       </form>`;
