@@ -103,6 +103,7 @@ document.querySelector('.listBtn').addEventListener('click', () => {
       })
 
       item.querySelector('.list__button-delete').addEventListener('click', (e) => {
+        e.stopPropagation();
         e.preventDefault();
         const itemIndex = array.findIndex(item => item.id === elem.id);
         array.splice(itemIndex, 1);
