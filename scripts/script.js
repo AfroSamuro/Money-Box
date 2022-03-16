@@ -59,7 +59,6 @@ document.querySelectorAll('.inputBox').forEach((element) => {
     let required = document.querySelector('.form__need').value;
 
     if (!(principal && interest && period && required)) return;
-   
 
     document.querySelector('.form__output').value = (required - (principal * ((1 + interest / (100 * 12)) ** period))) * (interest / (100 * 12)) * (1 / ((1 + interest / (100 * 12)) ** period - 1));
     document.querySelector('.form__output').value = Number(document.querySelector('.form__output').value).toFixed(2);
