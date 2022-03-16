@@ -156,7 +156,7 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
 
             document.querySelector('.form__output-change').value = (required - (principal * ((1 + interest / (100 * 12)) ** period))) * (interest / (100 * 12)) * (1 / ((1 + interest / (100 * 12)) ** period - 1));
             document.querySelector('.form__output-change').value = Number(document.querySelector('.form__output-change').value).toFixed(2);
-
+            if (+interest === 0){document.querySelector('.form__output-change').value = (required - principal)/period};
             if (document.querySelector('.form__output-change').value <= 0) {
               document.querySelector('.form__output-change').value = '--------------------';
             }
@@ -233,7 +233,7 @@ document.querySelectorAll('.inputBox').forEach((element) => {
 
     document.querySelector('.form__output').value = (required - (principal * ((1 + interest / (100 * 12)) ** period))) * (interest / (100 * 12)) * (1 / ((1 + interest / (100 * 12)) ** period - 1));
     document.querySelector('.form__output').value = Number(document.querySelector('.form__output').value).toFixed(2);
-
+    if (+interest === 0){document.querySelector('.form__output').value = (required - principal)/period}
     if (document.querySelector('.form__output').value <= 0) {
       document.querySelector('.form__output').value = '--------------------';
     }
