@@ -84,7 +84,7 @@ button {
 
 .make__create {
     background-color: rgb(56, 199, 139);
-    
+
 
 }
 
@@ -101,6 +101,55 @@ input[type=number] {
 label {
     color: black;
 }
+
+.change__title {
+    width: 220px;
+    height: 50px;
+    font-size: 26px;
+    text-align: center;
+}
+
+.change__need {
+    width: 150px;
+    height: 40px;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.change__have, .change__percent, .change__time {
+    width: 100px;
+}
+
+.change__lotsOfInputs {
+    width: 90%;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.change__output {
+    margin-top: 10px;
+    width: 150px;
+    height: 50px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgb(10, 180, 247);
+}
+
+.change__make {
+    display: flex;
+    justify-content: space-between;
+    width: 190px;
+    margin-top: 10px;
+}
+
+
 
 .load {
     position: fixed;
