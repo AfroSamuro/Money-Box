@@ -12,6 +12,19 @@ class Target {
   }
 }
 
+
+let slider = document.querySelector('.form__dragger');
+let inputBox = document.querySelector('.form__time');
+
+slider.addEventListener('input', (e) => {
+  inputBox.value = e.target.value;
+})
+
+inputBox.addEventListener('input', (e) => {
+  slider.value = e.target.value;
+})
+
+
 const userForm = document.querySelector('form');
 
 userForm.addEventListener('submit', (event) => {
@@ -35,6 +48,7 @@ userForm.addEventListener('submit', (event) => {
 
   array.push(new Target(`${data.get('title__input')}`, `${data.get('need__input')}`, `${data.get('form__have')}`,
     `${data.get('form__percent')}`, `${data.get('form__time')}`, `${data.get('form__output')}`));
+
 });
 
 document.querySelectorAll('.inputBox').forEach((element) => {
@@ -52,8 +66,6 @@ document.querySelectorAll('.inputBox').forEach((element) => {
     if (document.querySelector('.form__output').value <= 0) {
       document.querySelector('.form__output').value = '--------------------';
     }
-
-
   })
 })
 
@@ -86,7 +98,6 @@ document.querySelector('.listBtn').addEventListener('click', () => {
       document.querySelector('.list__of-goals').append(item);
 
       item.addEventListener('click', (e) => {
-        // alert(`${elem.id}`);
         const change = document.querySelector('.change__form');
         change.classList.remove('hidden');
         document.querySelector('.list__of-goals').classList.add('hidden');
@@ -95,6 +106,7 @@ document.querySelector('.listBtn').addEventListener('click', () => {
       })
 
       item.querySelector('.list__button-delete').addEventListener('click', (e) => {
+        e.stopPropagation();
         e.preventDefault();
         const itemIndex = array.findIndex(item => item.id === elem.id);
         array.splice(itemIndex, 1);
@@ -119,14 +131,4 @@ document.querySelector('.logoBtn').addEventListener('click', () => {
   location.reload();
 })
 
-let slider = document.querySelector('.form__dragger');
-let inputBox = document.querySelector('.form__time');
-
-slider.addEventListener('input', (e) => {
-  inputBox.value = e.target.value
-})
-
-inputBox.addEventListener('input', (e) => {
-  slider.value = e.target.value
-})
 
