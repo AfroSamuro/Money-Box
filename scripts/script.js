@@ -100,7 +100,53 @@ document.querySelector('.listBtn').addEventListener('click', () => {
 
       item.addEventListener('click', (e) => {
         alert(`${elem.id}`);
+        let grayarea = document.createElement('div');
+        grayarea.classList.add('gray');
+        document.querySelector('.new-form').append(grayarea);
+        let changeitem = document.createElement('div');
+        changeitem = document.createElement('div');
+        changeitem.classList.add('newForm');
+        changeitem.innerHTML = `<form action="" class="goal__form">
+
+        <label for="title__input">Цель</label>
+        <input type="text" name="title__input" placeholder="Название" class="form__title" required value="${elem.goal}">
+  
+        <label for="need__input">Требуемая сумма:</label>
+        <input type="number" min="0" name="need__input" placeholder="Цель, руб." class="form__need inputBox" step="0.01" required value="${elem.required}">
+  
+  
+        <div class="form__lotsOfInputs">
+          <div>
+            <label for="form__have">Стартовая сумма:</label>
+            <input type="number" min="0" name="form__have" placeholder="Нач. взнос" class="form__have inputBox" step="0.01"
+              required value="${elem.principal}">
+          </div>
+          <div>
+            <label for="form__percent">Процентная ставка:</label>
+            <input type="number" min="0" name="form__percent" placeholder="Процент, %" class="form__percent inputBox" step="0.1"
+              required value="${elem.interest}">
+          </div>
+          <div>
+            <label for="form__time">Срок (в мес.):</label><br>
+            <input type="number" name="form__time" placeholder="Срок, мес." class="form__time inputBox" required value="${elem.period}">
+            <input type="range" min="1" max="12" class="form__dragger inputBox">
+          </div>
+        </div>
+        <label for="form__output">Ежемесячное пополнение:</label>
+        <input class="form__output" min="0" placeholder="***" name="form__output" readonly value="${elem.replenishment}">
+  
+        <div class="form__make">
+          <button class="make__create make__change">Изменить</button>
+          <button class="make__cancel make__discard" type="button">Отмена</button>
+        </div>
+  
+      </form>`;
+      document.querySelector('.new-form').append(changeitem);
+      document.querySelector('.make__discard').addEventListener('click', () =>{
+        document.querySelector('.new-form').innerHTML ='';
       })
+      })
+      
 
       item.querySelector('.list__button-delete').addEventListener('click', (e) => {
         e.stopPropagation();
