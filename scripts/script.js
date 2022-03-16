@@ -12,6 +12,19 @@ class Target {
   }
 }
 
+
+let slider = document.querySelector('.form__dragger');
+let inputBox = document.querySelector('.form__time');
+
+slider.addEventListener('input', (e) => {
+  inputBox.value = e.target.value;
+})
+
+inputBox.addEventListener('input', (e) => {
+  slider.value = e.target.value;
+})
+
+
 const userForm = document.querySelector('form');
 
 userForm.addEventListener('submit', (event) => {
@@ -35,6 +48,7 @@ userForm.addEventListener('submit', (event) => {
 
   array.push(new Target(`${data.get('title__input')}`, `${data.get('need__input')}`, `${data.get('form__have')}`,
     `${data.get('form__percent')}`, `${data.get('form__time')}`, `${data.get('form__output')}`));
+
 });
 
 document.querySelectorAll('.inputBox').forEach((element) => {
@@ -45,18 +59,7 @@ document.querySelectorAll('.inputBox').forEach((element) => {
     let required = document.querySelector('.form__need').value;
 
     if (!(principal && interest && period && required)) return;
-    
-
-
-    let slider = document.querySelector('.form__dragger');
-    let inputBox = document.querySelector('.form__time');
-    slider.addEventListener('input', (e) => {
-      inputBox.value = e.target.value;
-    })
-    inputBox.addEventListener('input', (e) => {
-      slider.value = e.target.value
-    })
-
+   
 
     document.querySelector('.form__output').value = (required - (principal * ((1 + interest / (100 * 12)) ** period))) * (interest / (100 * 12)) * (1 / ((1 + interest / (100 * 12)) ** period - 1));
     document.querySelector('.form__output').value = Number(document.querySelector('.form__output').value).toFixed(2);
@@ -64,8 +67,6 @@ document.querySelectorAll('.inputBox').forEach((element) => {
     if (document.querySelector('.form__output').value <= 0) {
       document.querySelector('.form__output').value = '--------------------';
     }
-
-
   })
 })
 
@@ -126,15 +127,4 @@ document.querySelector('.logoBtn').addEventListener('click', () => {
   location.reload();
 })
 
-let slider = document.querySelector('.form__dragger');
-let inputBox = document.querySelector('.form__time');
-
-
-slider.addEventListener('input', (e) => {
-  inputBox.value = e.target.value
-})
-
-inputBox.addEventListener('input', (e) => {
-  slider.value = e.target.value
-})
 
