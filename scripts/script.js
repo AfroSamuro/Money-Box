@@ -73,7 +73,7 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
     array.forEach((elem) => {
       let item = document.createElement('div');
       item.classList.add('list__data');
-      item.innerHTML =
+      let html =
         `
       <div class="list__head">
       <button class="list__button-delete">X</button>
@@ -82,10 +82,10 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
       <hr>
       <p class="list__monthly">Пополнение: ${elem.replenishment} руб</p>
       `
+      item.innerHTML = html;
       document.querySelector('.list__of-goals').append(item);
 
       item.addEventListener('click', (e) => {
-        // alert(`${elem.id}`);
         let grayarea = document.createElement('div');
         grayarea.classList.add('gray');
         document.querySelector('.new-form').append(grayarea);
@@ -127,19 +127,8 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
         </div>
   
       </form>`;
-        // const form = document.querySelector('.goal__form')
-        // form.addEventListener('submit', () => {
-
-        // })
-
-
-
-
-
-
 
         document.querySelector('.new-form').append(changeitem);
-
 
         document.querySelector('.make__discard').addEventListener('click', () => {
           document.querySelector('.new-form').innerHTML = '';
@@ -177,7 +166,6 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
         document.querySelector('.make__change').addEventListener('click', (event) => {
           event.preventDefault();
 
-
           let blackscreen = document.createElement('div');
           let loadDiv = document.createElement('div');
           blackscreen.classList.add('load');
@@ -191,7 +179,6 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
             document.querySelector('.load').remove()
           }, 1000)
 
-          // changeForm.reset();
           const obj = array[array.findIndex(item => item.id === elem.id)]
           obj.goal = document.querySelector('.form__title-change').value;
           obj.required = document.querySelector('.form__need-change').value;
@@ -199,13 +186,33 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
           obj.interest = document.querySelector('.form__percent-change').value;
           obj.period = document.querySelector('.form__time-change').value;
           obj.replenishment = document.querySelector('.form__output-change').value;
+
           document.querySelector('.new-form').innerHTML = '';
-          // console.log(array);
-          renderlist();
+          html = '';
+          let newHtml =
+            `
+      <div class="list__head">
+      <button class="list__button-delete">X</button>
+      <p class="list__title">${obj.goal}</p>
+      </div><p class="list__final-amount">Сумма: ${obj.required} руб</p>
+      <hr>
+      <p class="list__monthly">Пополнение: ${obj.replenishment} руб</p>
+      `
+          item.innerHTML = newHtml;
+          item.querySelector('.list__button-delete').addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            const itemIndex = array.findIndex(item => item.id === elem.id);
+            array.splice(itemIndex, 1);
+            item.remove();
+
+            if (array.length === 0) {
+              document.querySelector('.list__goals-none').classList.remove('hidden');
+            }
+          })
         });
 
       })
-
 
       item.querySelector('.list__button-delete').addEventListener('click', (e) => {
         e.stopPropagation();
