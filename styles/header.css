@@ -6,7 +6,7 @@ header {
     justify-content: space-between;
     align-items: center;
     justify-content: center;
-    background-color: rgb(10, 180, 247);
+    background-color: rgb(250, 250, 250);
     position: fixed;
     top: 0;
 }
@@ -69,7 +69,7 @@ a {
     display: flex;
     align-items: center;
     letter-spacing: 0.06em;
-    color: white;
+    color: gray;
     text-decoration: none;
     
 }
@@ -80,4 +80,8 @@ a {
 
 button {
   cursor: pointer;
+}
+
+a:hover {
+  color: #03989e;
 }
