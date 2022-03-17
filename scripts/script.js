@@ -156,7 +156,7 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
           </div>
           <div>
             <label for="form__time">Срок (в мес.):</label><br>
-            <input type="number" name="form__time" placeholder="Срок, мес." class="form__time form__time-change inputBox2" required value="${elem.period}">
+            <input type="number" name="form__time" min="1" max="12" placeholder="Срок, мес." class="form__time form__time-change inputBox2" required value="${elem.period}">
             <input type="range" min="1" max="12" class="form__dragger form__dragger-change inputBox2">
           </div>
         </div>
