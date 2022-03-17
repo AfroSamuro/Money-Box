@@ -24,7 +24,7 @@
 
 .list__data {
     width: 350px;
-    height: 220px;
+    height: 500px;
     border: 2px solid black;
     border-radius: 10px;
     text-align: center;
@@ -62,4 +62,10 @@ hr {
 
 .hidden {
     display: none;
+}
+
+.myChart {
+    margin: 30px auto;
+    width: 250px;
+    height: 200px;
 }

@@ -12,6 +12,36 @@ class Target {
   }
 }
 
+function appendChart(canvas, start, refills, bankPayment) {
+  const data = {
+    labels: [
+      'Начальный взнос',
+      'Пополнения',
+      'Общий доход',
+    ],
+    datasets: [{
+      label: 'My First Dataset',
+      data: [start, refills, bankPayment],
+      backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(54, 162, 235)',
+        'rgb(255, 205, 86)'
+      ],
+      hoverOffset: 4
+    }]
+  };
+
+  const config = {
+    type: 'doughnut',
+    data: data,
+  };
+
+  new Chart(
+    canvas,
+    config
+  );
+}
+
 
 let slider = document.querySelector('.form__dragger');
 let inputBox = document.querySelector('.form__time');
@@ -39,6 +69,10 @@ userForm.addEventListener('submit', (event) => {
   loadDiv.textContent = 'Цель добавлена!';
   document.querySelector('main').append(blackscreen);
   document.querySelector('.load').append(loadDiv);
+
+  const donut = document.createElement('div');
+  donut.classList.add('myChart');
+
 
 
   setTimeout(() => {
@@ -81,8 +115,16 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
       </div><p class="list__final-amount">Сумма: ${elem.required} руб</p>
       <hr>
       <p class="list__monthly">Пополнение: ${elem.replenishment} руб</p>
+      <div class="myChart">
+        <canvas></canvas>
+      </div>
       `
       item.innerHTML = html;
+      appendChart(item.querySelector('canvas'),
+        elem.principal,
+        elem.replenishment * elem.period,
+        elem.required - elem.principal - elem.replenishment * elem.period)
+
       document.querySelector('.list__of-goals').append(item);
 
       item.addEventListener('click', (e) => {
@@ -145,9 +187,10 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
 
             document.querySelector('.form__output-change').value = (required - (principal * ((1 + interest / (100 * 12)) ** period))) * (interest / (100 * 12)) * (1 / ((1 + interest / (100 * 12)) ** period - 1));
             document.querySelector('.form__output-change').value = Number(document.querySelector('.form__output-change').value).toFixed(2);
-            if (+interest === 0){document.querySelector('.form__output-change').value = (required - principal)/period;
-            document.querySelector('.form__output-change').value = Number(document.querySelector('.form__output-change').value).toFixed(2);
-          };
+            if (+interest === 0) {
+              document.querySelector('.form__output-change').value = (required - principal) / period;
+              document.querySelector('.form__output-change').value = Number(document.querySelector('.form__output-change').value).toFixed(2);
+            };
             if (document.querySelector('.form__output-change').value <= 0) {
               document.querySelector('.form__output-change').value = '--------------------';
             }
@@ -199,8 +242,17 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
       </div><p class="list__final-amount">Сумма: ${obj.required} руб</p>
       <hr>
       <p class="list__monthly">Пополнение: ${obj.replenishment} руб</p>
+      <div class="myChart">
+        <canvas></canvas>
+      </div>
       `
           item.innerHTML = newHtml;
+
+          appendChart(item.querySelector('canvas'),
+            obj.principal,
+            obj.replenishment * obj.period,
+            obj.required - obj.principal - obj.replenishment * obj.period)
+
           item.querySelector('.list__button-delete').addEventListener('click', (e) => {
             e.stopPropagation();
             e.preventDefault();
@@ -242,9 +294,10 @@ document.querySelectorAll('.inputBox').forEach((element) => {
 
     document.querySelector('.form__output').value = (required - (principal * ((1 + interest / (100 * 12)) ** period))) * (interest / (100 * 12)) * (1 / ((1 + interest / (100 * 12)) ** period - 1));
     document.querySelector('.form__output').value = Number(document.querySelector('.form__output').value).toFixed(2);
-    if (+interest === 0){document.querySelector('.form__output').value = (required - principal)/period;
-    document.querySelector('.form__output').value = Number(document.querySelector('.form__output').value).toFixed(2);
-  }
+    if (+interest === 0) {
+      document.querySelector('.form__output').value = (required - principal) / period;
+      document.querySelector('.form__output').value = Number(document.querySelector('.form__output').value).toFixed(2);
+    }
     if (document.querySelector('.form__output').value <= 0) {
       document.querySelector('.form__output').value = '--------------------';
     }
