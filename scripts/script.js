@@ -2,7 +2,7 @@ let array = [];
 
 class Target {
   constructor(goal, required, principal, interest, period, replenishment) {
-    this.id = new Date().getTime()
+    this.id = new Date().getTime();
     this.goal = goal;
     this.required = required;
     this.principal = principal;
@@ -34,6 +34,15 @@ function appendChart(canvas, start, refills, bankPayment) {
   const config = {
     type: 'doughnut',
     data: data,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'chartArea',
+          align: 'center',
+        },
+      }
+    },
   };
 
   new Chart(
@@ -100,7 +109,6 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
     document.querySelector('.list__goals-none').classList.remove('hidden');
 
   } else {
-    document.querySelector('.list__goals-none').classList.add('hidden');
     document.querySelector('.list__of-goals').classList.remove('hidden');
     document.querySelector('.list__of-goals').innerHTML = '';
 
@@ -128,6 +136,7 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
       document.querySelector('.list__of-goals').append(item);
 
       item.addEventListener('click', (e) => {
+      
         let grayarea = document.createElement('div');
         grayarea.classList.add('gray');
         document.querySelector('.new-form').append(grayarea);
@@ -264,6 +273,9 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
               document.querySelector('.list__goals-none').classList.remove('hidden');
             }
           })
+          document.querySelector('.myChart').addEventListener('click', (e) => {
+            e.stopPropagation();
+          })
         });
 
       })
@@ -280,6 +292,9 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
         }
       })
     });
+    document.querySelector('.myChart').addEventListener('click', (e) => {
+      e.stopPropagation();
+    })
   }
 })
 
