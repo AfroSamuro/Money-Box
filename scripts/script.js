@@ -232,7 +232,7 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
           slider.value = e.target.value;
         })
 
-        document.querySelector('.make__change').addEventListener('click', (event) => {
+        document.querySelector('.change__form').addEventListener('submit', (event) => {
           event.preventDefault();
 
           let blackscreen = document.createElement('div');
