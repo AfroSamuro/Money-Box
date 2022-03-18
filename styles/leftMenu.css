@@ -6,6 +6,7 @@
     position: fixed;
     top: 0;
     box-shadow: 0 0 0 1px #faf8f9, 0 0 0 2px #dddbdc;
+    z-index: 99;
 }
 .createBtn {
     width: 100%;    
