@@ -143,6 +143,11 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
       </div>
       `
       item.innerHTML = html;
+
+      item.querySelector('.myChart').addEventListener('click', (e) => {
+        e.stopPropagation();
+      })
+
       appendChart(item.querySelector('canvas'),
         elem.principal,
         elem.replenishment * elem.period,
@@ -272,6 +277,10 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
       `
           item.innerHTML = newHtml;
 
+          item.querySelector('.myChart').addEventListener('click', (e) => {
+            e.stopPropagation();
+          })
+
           appendChart(item.querySelector('canvas'),
             obj.principal,
             obj.replenishment * obj.period,
@@ -288,9 +297,7 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
               document.querySelector('.list__goals-none').classList.remove('hidden');
             }
           })
-          document.querySelector('.myChart').addEventListener('click', (e) => {
-            e.stopPropagation();
-          })
+         
         });
 
       })
@@ -307,9 +314,6 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
         }
       })
     });
-    document.querySelector('.myChart').addEventListener('click', (e) => {
-      e.stopPropagation();
-    })
   }
   document.querySelector('.myChart').addEventListener('click', (e) => {
     e.stopPropagation();
