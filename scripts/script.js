@@ -17,29 +17,44 @@ function appendChart(canvas, start, refills, bankPayment) {
     labels: [
       'Начальный взнос',
       'Пополнения',
-      'Общий доход',
+      'Процентные начисления',
     ],
+
     datasets: [{
       label: 'My First Dataset',
       data: [start, refills, bankPayment],
       backgroundColor: [
-        'rgb(255, 99, 132)',
-        'rgb(54, 162, 235)',
-        'rgb(255, 205, 86)'
+        'rgb(76, 70, 255)',
+        'rgb(41, 255, 242)',
+        'rgb(107, 225, 71)'
       ],
-      hoverOffset: 4
     }]
   };
 
   const config = {
     type: 'doughnut',
     data: data,
+    options: {
+      cutout: '85%',
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: {
+            boxWidth: 16,
+            color: 'white',
+            padding: 20,
+          },
+        },
+      }
+    }
   };
 
   new Chart(
     canvas,
     config
   );
+
+
 }
 
 
@@ -113,7 +128,7 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
       <button class="list__button-delete">X</button>
       <p class="list__title">${elem.goal}</p>
       </div><p class="list__final-amount">Сумма: ${elem.required} руб</p>
-      <hr>
+      
       <p class="list__monthly">Пополнение: ${elem.replenishment} руб</p>
       <div class="myChart">
         <canvas></canvas>
@@ -240,7 +255,7 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
       <button class="list__button-delete">X</button>
       <p class="list__title">${obj.goal}</p>
       </div><p class="list__final-amount">Сумма: ${obj.required} руб</p>
-      <hr>
+      
       <p class="list__monthly">Пополнение: ${obj.replenishment} руб</p>
       <div class="myChart">
         <canvas></canvas>
@@ -281,6 +296,9 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
       })
     });
   }
+  document.querySelector('.myChart').addEventListener('click', (e) => {
+    e.stopPropagation();
+  })
 })
 
 document.querySelectorAll('.inputBox').forEach((element) => {

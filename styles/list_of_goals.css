@@ -1,4 +1,3 @@
-
 .list__goals-none {
     display: flex;
     height: 600px;
@@ -8,12 +7,16 @@
 }
 
 .list__button-delete {
-    margin-top: 2px;
+    margin-top: 6px;
     margin-left: 310px;
     width: 28px;
     height: 28px;
-    background-color: #fff;
+    background-color: rgb(152, 255, 255);
+    color: #306851;
     border-radius: 50%;
+    border: transparent;
+    font-weight: 600;
+    font-size: 14px;
 }
 
 .list__of-goals {
@@ -24,11 +27,10 @@
 
 .list__data {
     width: 350px;
-    height: 500px;
-    border: 2px solid black;
     border-radius: 10px;
-    text-align: center;
     margin: 0 60px 80px 0;
+    background: linear-gradient(135deg, #03ea8e 0%, #6078ea 100%);
+    color: rgb(228, 255, 239)
 }
 
 .list__data:hover {
@@ -37,23 +39,24 @@
 
 .list__head {
     height: 86px;
-    background-color: rgb(63, 226, 255);
     border-radius: 9px 9px 0 0;
-    justify-content: center;
 }
 
 .list__title {
     font-size: 38px;
+    padding-left: 80px;
 }
 
 .list__final-amount {
-    font-size: 25px;
-    margin-top: 20px;
+    font-size: 28px;
+    padding: 20px 26px;
+    border-bottom: 1px solid rgb(233, 230, 230);
 }
 
 .list__monthly {
-    font-size: 25px;
-    margin-top: 10px;
+    font-size: 24px;
+    padding-top: 16px;
+    padding-left: 26px;
 }
 
 hr {
@@ -65,7 +68,5 @@ hr {
 }
 
 .myChart {
-    margin: 30px auto;
-    width: 250px;
-    height: 200px;
+    padding: 26px;
 }
