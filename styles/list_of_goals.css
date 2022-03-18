@@ -44,7 +44,9 @@
 
 .list__title {
     font-size: 38px;
-    padding-left: 80px;
+    font-weight: 500;
+    width: fit-content;
+    margin: 0 auto;
 }
 
 .list__final-amount {
