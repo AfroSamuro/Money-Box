@@ -173,7 +173,7 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
           <p class="goal__description">Цель</p>
           <div class="goal__input-container">
             <span class="goal__placeholder goal__placeholder_name">✓</span>
-            <input class="goal__input form__title form__title-change" type="text" placeholder="Имя" name="title__input" required value="${elem.goal}">
+            <input class="goal__input form__title form__title-change" type="text" placeholder="Имя" name="title__input" required autocomplete="off" value="${elem.goal}">
           </div>
         </label>
         
@@ -438,4 +438,10 @@ document.querySelector('.logoBtn').addEventListener('click', () => {
 
 document.querySelector('.form__dragger').addEventListener('input', () => {
   console.log(document.querySelector('.form__dragger').value)
+})
+
+document.querySelectorAll('img').forEach((element) => {
+  element.ondragstart = function () {
+  return false;
+};
 })
