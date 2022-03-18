@@ -31,7 +31,8 @@
     border-radius: 10px;
     margin: 0 60px 80px 0;
     background: linear-gradient(135deg, #03ea8e 0%, #6078ea 100%);
-    color: rgb(228, 255, 239)
+    color: rgb(228, 255, 239);
+    box-shadow: 5px 5px 5px rgb(83, 119, 114);
 }
 
 .list__data:hover {
