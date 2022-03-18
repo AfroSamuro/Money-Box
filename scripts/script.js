@@ -53,8 +53,12 @@ function appendChart(canvas, start, refills, bankPayment) {
     canvas,
     config
   );
+}
 
-
+function donutStopPropagation(elem) {
+  elem.querySelector('.myChart').addEventListener('click', (e) => {
+    e.stopPropagation();
+  })
 }
 
 
@@ -144,9 +148,7 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
       `
       item.innerHTML = html;
 
-      item.querySelector('.myChart').addEventListener('click', (e) => {
-        e.stopPropagation();
-      })
+      donutStopPropagation(item);
 
       appendChart(item.querySelector('canvas'),
         elem.principal,
@@ -277,9 +279,7 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
       `
           item.innerHTML = newHtml;
 
-          item.querySelector('.myChart').addEventListener('click', (e) => {
-            e.stopPropagation();
-          })
+          donutStopPropagation(item);
 
           appendChart(item.querySelector('canvas'),
             obj.principal,
@@ -315,9 +315,7 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
       })
     });
   }
-  document.querySelector('.myChart').addEventListener('click', (e) => {
-    e.stopPropagation();
-  })
+  donutStopPropagation(document);
 })
 
 document.querySelectorAll('.inputBox').forEach((element) => {
