@@ -68,6 +68,7 @@
 .goal__data {
    width: 66%;
    padding: 30px;
+   background-color: white;
 }
 
 .goal__payment {
