@@ -28,14 +28,12 @@ class Range {
     })
 
     document.addEventListener('mouseup', (e) => {
-      // e.preventDefault()
       this.isDown = false
     })
 
     this.parts.querySelector(':first-child').style.color = '#4A86FF';
 
     document.addEventListener('mousemove', (e) =>  {
-      // e.preventDefault()
       if(!this.isDown) return;
       this.setTracer(e.pageX)
       this.previousX = e.pageX;
@@ -78,11 +76,6 @@ class Range {
   }
 
 }
-
-
-
-
-
 
 let array = [];
 
@@ -147,17 +140,8 @@ function donutStopPropagation(elem) {
   })
 }
 
-
 const range = new Range(document.querySelector('.range'))
 let inputBox = document.querySelector('.form__time');
-
-
-// range.onChange = (value) => inputBox.value = value
-
-// inputBox.addEventListener('input', (e) => {
-//   slider.value = e.target.value;
-// })
-
 
 const userForm = document.querySelector('form');
 const output = userForm.querySelector('output')
@@ -169,7 +153,6 @@ range.onChange = () => {
 userForm.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  // const data = new FormData(event.target);
 
   let blackscreen = document.createElement('div');
   let loadDiv = document.createElement('div');
@@ -188,21 +171,11 @@ userForm.addEventListener('submit', (event) => {
     document.querySelector('.load').remove()
   }, 1000)
 
-  
-
-
-
-
-  // array.push(new Target(`${data.get('title__input')}`, `${data.get('need__input')}`, `${data.get('form__have')}`,
-  //   `${data.get('form__percent')}`, `${data.get('form__time')}`, `${data.get('form__output')}`));
-
   array.push(createTargetFromForm(userForm));
 
   userForm.reset();
 
 });
-
-
 
 userForm.addEventListener('reset', () => {
   range.reset()
@@ -325,17 +298,6 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
           })
         })
 
-        let slider = document.querySelector('.form__dragger-change');
-        let inputBox = document.querySelector('.form__time-change');
-
-        slider.addEventListener('input', (e) => {
-          inputBox.value = e.target.value;
-        })
-
-        inputBox.addEventListener('input', (e) => {
-          slider.value = e.target.value;
-        })
-
         document.querySelector('.change__form').addEventListener('submit', (event) => {
           event.preventDefault();
 
@@ -443,18 +405,6 @@ document.querySelector('.createBtn').addEventListener('click', () => {
 document.querySelector('.logoBtn').addEventListener('click', () => {
   location.reload();
 })
-
-// class Target {
-//   constructor(goal, required, principal, interest, period, replenishment) {
-//     this.id = new Date().getTime()
-//     this.goal = goal;
-//     this.required = required;
-//     this.principal = principal;
-//     this.interest = interest;
-//     this.period = period;
-//     this.replenishment = replenishment;
-//   }
-// }
 
 
 function calculateReplenishment () {
