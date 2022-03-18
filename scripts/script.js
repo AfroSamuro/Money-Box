@@ -1,3 +1,89 @@
+class Range {
+  container;
+  trace 
+  tracer
+
+  value = 1;
+
+  isDown = false;
+  previousX = 0;
+
+  constructor(range) {
+    this.container = range;
+
+    this.trace = this.container.querySelector('.range__trace');
+    this.tracer =  this.container.querySelector('.range__tracer');
+    this.parts = this.container.querySelector('.range__parts');
+    this.passed = this.container.querySelector('.range__passed');
+
+    const bound = this.trace.getBoundingClientRect()
+
+    this.max = bound.right;
+    this.min = bound.left;
+
+
+    this.tracer.addEventListener('mousedown', (e) => {
+      e.preventDefault()
+      this.isDown = true
+    })
+
+    document.addEventListener('mouseup', (e) => {
+      // e.preventDefault()
+      this.isDown = false
+    })
+
+    this.parts.querySelector(':first-child').style.color = '#4A86FF';
+
+    document.addEventListener('mousemove', (e) =>  {
+      // e.preventDefault()
+      if(!this.isDown) return;
+      this.setTracer(e.pageX)
+      this.previousX = e.pageX;
+    })
+  }
+
+
+  setTracer(cursorX) {
+    
+    if(cursorX < this.min || cursorX > this.max) return
+    const path = cursorX - this.min
+    const bound = Math.floor(((path / this.trace.offsetWidth * 12)));
+    
+    if(bound + 1 !== this.value) {
+      this.value = bound + 1
+      this.onChange?.(this.value)
+
+      this.parts.querySelectorAll(`p`).forEach((e, i) => {
+        if (i > bound) {
+          e.style.color = 'rgb(101, 101, 101)';
+          this.count--
+          return
+        };
+        this.count++
+        e.style.color = '#4A86FF';
+      });
+    };
+
+  
+  
+    this.passed.style.width = path + 'px'
+    this.tracer.style.left = path + 'px'
+  }
+
+  reset() {
+    this.parts.querySelectorAll(`p`).forEach(p => p.style.color = 'rgb(101, 101, 101)')
+    this.passed.style.width = 0 + 'px'
+    this.tracer.style.left = 0 + 'px'
+    this.value = 1
+  }
+
+}
+
+
+
+
+
+
 let array = [];
 
 class Target {
@@ -62,24 +148,28 @@ function donutStopPropagation(elem) {
 }
 
 
-let slider = document.querySelector('.form__dragger');
+const range = new Range(document.querySelector('.range'))
 let inputBox = document.querySelector('.form__time');
 
-slider.addEventListener('input', (e) => {
-  inputBox.value = e.target.value;
-})
 
-inputBox.addEventListener('input', (e) => {
-  slider.value = e.target.value;
-})
+// range.onChange = (value) => inputBox.value = value
+
+// inputBox.addEventListener('input', (e) => {
+//   slider.value = e.target.value;
+// })
 
 
 const userForm = document.querySelector('form');
+const output = userForm.querySelector('output')
+
+range.onChange = () => {
+  calculateReplenishment()
+}
 
 userForm.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  const data = new FormData(event.target);
+  // const data = new FormData(event.target);
 
   let blackscreen = document.createElement('div');
   let loadDiv = document.createElement('div');
@@ -98,17 +188,24 @@ userForm.addEventListener('submit', (event) => {
     document.querySelector('.load').remove()
   }, 1000)
 
-  userForm.reset();
+  
 
-  array.push(new Target(`${data.get('title__input')}`, `${data.get('need__input')}`, `${data.get('form__have')}`,
-    `${data.get('form__percent')}`, `${data.get('form__time')}`, `${data.get('form__output')}`));
+
+
+
+  // array.push(new Target(`${data.get('title__input')}`, `${data.get('need__input')}`, `${data.get('form__have')}`,
+  //   `${data.get('form__percent')}`, `${data.get('form__time')}`, `${data.get('form__output')}`));
+
+  array.push(createTargetFromForm(userForm));
+
+  userForm.reset();
 
 });
 
 
 
-document.querySelector('.make__cancel').addEventListener('click', () => {
-  userForm.reset();
+userForm.addEventListener('reset', () => {
+  range.reset()
 });
 
 document.querySelector('.listBtn').addEventListener('click', function renderlist() {
@@ -318,24 +415,14 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
   donutStopPropagation(document);
 })
 
-document.querySelectorAll('.inputBox').forEach((element) => {
+
+
+
+userForm.querySelectorAll('input:not([name=title__input])').forEach((element) => {
   element.addEventListener('input', () => {
-    let principal = document.querySelector('.form__have').value;
-    let interest = document.querySelector('.form__percent').value;
-    let period = document.querySelector('.form__time').value;
-    let required = document.querySelector('.form__need').value;
+    calculateReplenishment()
 
-    if (!(principal && interest && period && required)) return;
 
-    document.querySelector('.form__output').value = (required - (principal * ((1 + interest / (100 * 12)) ** period))) * (interest / (100 * 12)) * (1 / ((1 + interest / (100 * 12)) ** period - 1));
-    document.querySelector('.form__output').value = Number(document.querySelector('.form__output').value).toFixed(2);
-    if (+interest === 0) {
-      document.querySelector('.form__output').value = (required - principal) / period;
-      document.querySelector('.form__output').value = Number(document.querySelector('.form__output').value).toFixed(2);
-    }
-    if (document.querySelector('.form__output').value <= 0) {
-      document.querySelector('.form__output').value = '--------------------';
-    }
   })
 })
 
@@ -356,5 +443,53 @@ document.querySelector('.createBtn').addEventListener('click', () => {
 document.querySelector('.logoBtn').addEventListener('click', () => {
   location.reload();
 })
+
+// class Target {
+//   constructor(goal, required, principal, interest, period, replenishment) {
+//     this.id = new Date().getTime()
+//     this.goal = goal;
+//     this.required = required;
+//     this.principal = principal;
+//     this.interest = interest;
+//     this.period = period;
+//     this.replenishment = replenishment;
+//   }
+// }
+
+
+function calculateReplenishment () {
+  const { replenishment }  = createTargetFromForm(userForm)
+  output.value = isNaN(replenishment) ? '╮(︶▽︶)╭' 
+  : replenishment < 0 ? 'Некорректные значения ( ͡° ͜ʖ ͡°)' : "₽ " +  replenishment;
+}
+ 
+
+function createTargetFromForm(form) {
+  const data = new FormData(form)
+  const required =  data.get('need__input');
+  const interest =  data.get('form__percent');
+  const title = data.get('title__input'); 
+  const period = range.value;
+  const principal = data.get('form__have');
+  const result = (required && interest && period && principal) 
+  
+  ? (required - (principal * ((1 + interest / (100 * 12)) ** period))) * (interest / (100 * 12)) * (1 / ((1 + interest / (100 * 12)) ** period - 1))
+  : NaN
+
+  return new Target(
+    title,
+    required,
+    principal, 
+    interest, 
+    period,
+    isNaN(result) ? NaN : +result.toFixed(2),
+  )
+}
+
+
+
+
+
+
 
 

@@ -43,7 +43,7 @@
       </div>
     </div>
 
-    <form action="" class="goal__form">
+    <!-- <form action="" class="goal__form">
 
       <label for="title__input">Цель</label>
       <input type="text" name="title__input" placeholder="Название" class="form__title" required>
@@ -79,6 +79,99 @@
         <button class="button make__create">Добавить</button>
         <button class="button make__cancel" type="button">Сброс</button>
       </div>
+
+    </form> -->
+
+
+    <form action="" class="goal goal__form">
+      <section class="goal__data">
+        <label class="goal__label">
+          <p class="goal__description">Цель</p>
+          <div class="goal__input-container">
+            <span class="goal__placeholder goal__placeholder_name">✓</span>
+            <input class="goal__input" type="text" placeholder="Имя" name="title__input" required>
+          </div>
+        </label>
+        
+        <label class="goal__label">
+          <p class="goal__description">Требуемая сумма</p>
+          <div class="goal__input-container">
+            <span class="goal__placeholder">₽</span>
+            <input class="goal__input" type="number" placeholder="1,200,000" name="need__input" required>
+          </div>
+        </label>
+       
+
+        <label class="goal__label">
+          <p class="goal__description">Стартовая сумма</p>
+          <div class="goal__input-container">
+            <span class="goal__placeholder">₽</span>
+            <input class="goal__input" type="number" placeholder="400,000" name="form__have" required>
+          </div>
+         
+        </label>
+      
+
+        <label class="goal__label">
+          <p class="goal__description">Процентная ставка</p>
+          <div class="goal__input-container">
+            <span class="goal__placeholder">%</span>
+            <input class="goal__input" type="number" placeholder="10.5" name="form__percent" required>
+          </div>
+        </label>
+        
+
+        <label class="goal__label">
+          <div class="goal__description-container">
+            <p class="goal__description">Срок</p>
+            <p class="goal__description">Мес.</p>
+          </div>
+          <!-- <input type="range" min="1" max="12" class="dragger"> -->
+          <div class="goal__range range">
+           
+            <div class="range__trace">
+              <div class="range__tracer"></div>
+              <div class="range__passed"></div>
+            </div>
+            <div class="range__parts">
+              <p>1</p>
+              <p>2</p>
+              <p>3</p>
+              <p>4</p>
+              <p>5</p>
+              <p>6</p>
+              <p>7</p>
+              <p>8</p>
+              <p>9</p>
+              <p>10</p>
+              <p>11</p>
+              <p>12</p>
+            </div>
+          </div>
+         
+        </label>
+
+        <div class="goal__buttons">
+          <button  class="goal__button goal__button_submit">Создать</button>
+          <button  class="goal__button goal__button_reset" type="reset">Сбросить</button>
+        </div>
+
+       
+
+      </section>
+
+      <section class="goal__payment payment">
+        <h1 class="payment__title">Месячный платёж</h1>
+        <!-- <label for="output">Ежемесячное пополнение:</label> -->
+        <div class="payment__body">
+          <div class="output__container">
+          <output class="output" readonly>
+          </div>
+        </div>
+
+      </section>
+
+
     </form>
 
     <div class="list__goals-none hidden">

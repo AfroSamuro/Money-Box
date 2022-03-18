@@ -1,0 +1,169 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+.lastForm {
+    width: 500px;
+    height: 500px;
+    flex-direction: column;
+    
+}
+
+.goal {
+    padding: 0;
+    background-color: transparent;
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-direction: row;
+    align-items: stretch;
+    border: 0;
+    width: 800px;
+    box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+   
+}
+
+.goal__label {
+    color: #656565;
+}
+
+.output__container {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.payment__body {
+    padding: 10px;
+}
+
+.payment__title {
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    background-color: rgba(74, 134, 255, 0.3);
+}
+
+
+
+.goal__input-container {
+    position: relative;
+    
+}
+
+.goal__placeholder {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+
+.goal__data {
+   width: 66%;
+   padding: 30px;
+}
+
+.goal__payment {
+    background-color: #383838;
+    width: 34%;
+    color: white;
+}
+
+.goal__input {
+    background-color: white;
+    color: black;
+    width: 100%;
+    border: 0;
+    padding-left: 20px;
+    border-radius: 0;
+    outline: 0;
+    border-bottom: 2px solid #b4b1b1;
+    font-size: 16px;
+
+}
+.goal__input-container{
+    margin-top: 8px;
+}
+
+.goal__label:not(:first-child) .goal__description{
+      margin-top: 20px;
+}
+.goal__range {
+    margin-top: 10px;
+}
+
+.goal__input::placeholder {
+    color: #b4b1b1;
+}
+
+.goal__description-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.range__trace {
+    background-color: #656565;
+    height: 10px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.range__passed {
+    width:0;
+    height: 100%;
+    border-radius: 5px;
+    background-color: #4A86FF;
+}
+
+.range__parts {
+    display: flex;
+    margin-top: 6px;
+    user-select: none;
+}
+
+.range__parts {
+    justify-content: space-between;
+}
+
+.range__parts p {
+    /* margin-left: auto */
+    /* flex-grow: 1; */
+    /* text-align: center; */
+   
+}
+
+.range__tracer {
+    background-color: #0b59f5;
+    height: 20px;
+    cursor: pointer;
+    width: 20px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+.goal__buttons {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.goal__button {
+    border-radius: 4px;
+  
+    padding: 6px 30px;
+    width: auto;
+    border: 0;
+    outline: 0;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.goal__button_reset {
+    background-color: #F7234C;
+}
