@@ -138,7 +138,7 @@ function appendChart(canvas, start, refills, bankPayment) {
 }
 
 function donutStopPropagation(elem) {
-  elem.querySelector('.myChart').addEventListener('click', (e) => {
+  elem.querySelector('.myChart')?.addEventListener('click', (e) => { 
     e.stopPropagation();
   })
 }
