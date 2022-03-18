@@ -35,8 +35,12 @@
   <main>
 
     <div class="leftMenu">
-      <button class="createBtn">СОЗДАТЬ</button>
-      <button class="listBtn">СПИСОК</button>
+      <div>
+        <button class="createBtn"><img class="create-icon" src="./images/create.svg"><br>СОЗДАТЬ</button>
+      </div> 
+      <div>
+        <button class="listBtn"><img class="list-icon" src="./images/graylist.svg"><br>СПИСОК</button>
+      </div>
     </div>
 
     <form action="" class="goal__form">
@@ -62,7 +66,8 @@
         </div>
         <div>
           <label for="form__time">Срок (в мес.):</label><br>
-          <input type="number" name="form__time" min="1" max="12" placeholder="Срок, мес." class="form__time inputBox" required>
+          <input type="number" name="form__time" min="1" max="12" placeholder="Срок, мес." class="form__time inputBox"
+            required>
           <input type="range" min="1" max="12" class="form__dragger inputBox">
         </div>
       </div>
@@ -71,10 +76,9 @@
       <input class="form__output" min="0" placeholder="***" name="form__output" readonly>
 
       <div class="form__make">
-        <button class="make__create">Добавить</button>
-        <button class="make__cancel" type="button">Сброс</button>
+        <button class="button make__create">Добавить</button>
+        <button class="button make__cancel" type="button">Сброс</button>
       </div>
-
     </form>
 
     <div class="list__goals-none hidden">
@@ -88,5 +92,4 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script type="module" src="./scripts/script.js"></script>
 </body>
-
 </html>

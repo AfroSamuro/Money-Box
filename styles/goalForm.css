@@ -28,7 +28,7 @@ input::placeholder {
     color: rgba(252, 247, 247, 0.795);
 }
 
-button {
+.button {
     background-color: rgb(10, 180, 247);
     padding: 5px;
     border-radius: 10px;
