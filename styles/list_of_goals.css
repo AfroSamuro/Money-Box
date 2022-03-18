@@ -18,6 +18,8 @@
     border: transparent;
     font-weight: 600;
     font-size: 14px;
+    box-shadow: 2px 2px 4px rgb(83, 119, 114);
+
 }
 
 .list__of-goals {
