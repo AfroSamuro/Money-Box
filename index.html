@@ -37,48 +37,125 @@
     <div class="leftMenu">
       <div>
         <button class="createBtn"><img class="create-icon" src="./images/create.svg"><br>СОЗДАТЬ</button>
-      </div> 
+      </div>
       <div>
         <button class="listBtn"><img class="list-icon" src="./images/graylist.svg"><br>СПИСОК</button>
       </div>
     </div>
 
-    <form action="" class="goal__form">
 
-      <label for="title__input">Цель</label>
-      <input type="text" name="title__input" placeholder="Название" class="form__title" required>
+    <form action="" class="goal goal__form">
+      <section class="goal__data">
+        <label class="goal__label">
+          <p class="goal__description">Цель</p>
+          <div class="goal__input-container">
+            <span class="goal__placeholder goal__placeholder_name">✓</span>
+            <input class="goal__input form__title" type="text" placeholder="Имя" name="title__input" required>
+          </div>
+        </label>
 
-      <label for="need__input">Требуемая сумма:</label>
-      <input type="number" min="0" name="need__input" placeholder="Цель, руб." class="form__need inputBox" step="0.01"
-        required>
+        <label class="goal__label">
+          <p class="goal__description">Требуемая сумма</p>
+          <div class="goal__input-container">
+            <span class="goal__placeholder">₽</span>
+            <input class="goal__input form__need inputBox" type="number" placeholder="1,200,000" name="need__input"
+              required>
+          </div>
+        </label>
 
 
-      <div class="form__lotsOfInputs">
-        <div>
-          <label for="form__have">Стартовая сумма:</label>
-          <input type="number" min="0" name="form__have" placeholder="Нач. взнос" class="form__have inputBox"
-            step="0.01" required>
+        <label class="goal__label">
+          <p class="goal__description">Стартовая сумма</p>
+          <div class="goal__input-container">
+            <span class="goal__placeholder">₽</span>
+            <input class="goal__input form__have inputBox" type="number" placeholder="400,000" name="form__have"
+              required>
+          </div>
+
+        </label>
+
+
+        <label class="goal__label">
+          <p class="goal__description">Процентная ставка</p>
+          <div class="goal__input-container">
+            <span class="goal__placeholder">%</span>
+            <input class="goal__input form__percent inputBox" type="number" placeholder="10.5" name="form__percent"
+              required>
+          </div>
+        </label>
+
+
+        <label class="goal__label">
+          <div class="goal__description-container">
+            <p class="goal__description">Срок</p>
+            <p class="goal__description">Мес.</p>
+          </div>
+          <!-- <input type="range" min="1" max="12" class="dragger"> -->
+          <div class="goal__range range">
+
+            <!-- <div class="range__trace">
+              <div class="range__tracer"></div>
+              <div class="range__passed"></div>
+            </div> -->
+            <!-- <input type="range" min="1" max="12" class="dragger"> -->
+
+            <input type="number" name="form__time" min="1" max="12" placeholder="Срок, мес." class="form__time inputBox"
+              required hidden value="7">
+            <input type="range" min="1" max="12" class="form__dragger inputBox" list="tickmarks" value="7">
+            <datalist id="tickmarks">
+
+              <option value="1">
+              <option value="2">
+              <option value="3">
+              <option value="4">
+              <option value="5">
+              <option value="6">
+              <option value="7">
+              <option value="8">
+              <option value="9">
+              <option value="10">
+              <option value="11">
+              <option value="12">
+            </datalist>
+            <div class="range__parts">
+              <p class="number">1</p>
+              <p class="number">2</p>
+              <p class="number">3</p>
+              <p class="number">4</p>
+              <p class="number">5</p>
+              <p class="number">6</p>
+              <p class="number">7</p>
+              <p class="number">8</p>
+              <p class="number">9</p>
+              <p class="number">10</p>
+              <p class="number">11</p>
+              <p class="number">12</p>
+            </div>
+          </div>
+
+        </label>
+
+        <div class="goal__buttons">
+          <button class="goal__button goal__button_submit">Создать</button>
+          <button class="goal__button goal__button_reset make__cancel" type="reset">Сбросить</button>
         </div>
-        <div>
-          <label for="form__percent">Процентная ставка:</label>
-          <input type="number" min="0" name="form__percent" placeholder="Процент, %" class="form__percent inputBox"
-            step="0.1" required>
-        </div>
-        <div>
-          <label for="form__time">Срок (в мес.):</label><br>
-          <input type="number" name="form__time" min="1" max="12" placeholder="Срок, мес." class="form__time inputBox"
-            required>
-          <input type="range" min="1" max="12" class="form__dragger inputBox">
-        </div>
-      </div>
 
-      <label for="form__output">Ежемесячное пополнение:</label>
-      <input class="form__output" min="0" placeholder="***" name="form__output" readonly>
 
-      <div class="form__make">
-        <button class="button make__create">Добавить</button>
-        <button class="button make__cancel" type="button">Сброс</button>
-      </div>
+
+      </section>
+
+      <section class="goal__payment payment">
+        <h1 class="payment__title">Месячный платёж</h1>
+        <!-- <label for="output">Ежемесячное пополнение:</label> -->
+        <div class="payment__body">
+          <div class="output__container">
+            <input class="output" name="form__output" readonly>
+          </div>
+        </div>
+
+      </section>
+
+
     </form>
 
     <div class="list__goals-none hidden">
@@ -92,4 +169,5 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script type="module" src="./scripts/script.js"></script>
 </body>
+
 </html>

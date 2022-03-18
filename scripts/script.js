@@ -76,7 +76,7 @@ inputBox.addEventListener('input', (e) => {
 
 const userForm = document.querySelector('form');
 
-userForm.addEventListener('submit', (event) => {
+document.querySelector('.goal').addEventListener('submit', (event) => {
   event.preventDefault();
 
   const data = new FormData(event.target);
@@ -99,7 +99,7 @@ userForm.addEventListener('submit', (event) => {
   }, 1000)
 
   userForm.reset();
-
+  console.log(data);
   array.push(new Target(`${data.get('title__input')}`, `${data.get('need__input')}`, `${data.get('form__have')}`,
     `${data.get('form__percent')}`, `${data.get('form__time')}`, `${data.get('form__output')}`));
 
@@ -165,41 +165,119 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
         let changeitem = document.createElement('div');
         changeitem = document.createElement('div');
         changeitem.classList.add('newForm');
-        changeitem.innerHTML = `<form action="" class="goal__form change__form">
+        changeitem.innerHTML = `
+      </form>
+      <form action="" class="goal goal__form change__form">
+      <section class="goal__data">
+        <label class="goal__label">
+          <p class="goal__description">Цель</p>
+          <div class="goal__input-container">
+            <span class="goal__placeholder goal__placeholder_name">✓</span>
+            <input class="goal__input form__title form__title-change" type="text" placeholder="Имя" name="title__input" required value="${elem.goal}">
+          </div>
+        </label>
+        
+        <label class="goal__label">
+          <p class="goal__description">Требуемая сумма</p>
+          <div class="goal__input-container">
+            <span class="goal__placeholder">₽</span>
+            <input class="goal__input form__need inputBox2 form__need-change" type="number" placeholder="1,200,000" name="need__input" required value="${elem.required}">
+          </div>
+        </label>
+       
 
-        <label for="title__input">Цель</label>
-        <input type="text" name="title__input" placeholder="Название" class="form__title form__title-change" required value="${elem.goal}">
-  
-        <label for="need__input">Требуемая сумма:</label>
-        <input type="number" min="0" name="need__input" placeholder="Цель, руб." class="form__need form__need-change inputBox2" step="0.01" required value="${elem.required}">
-  
-  
-        <div class="form__lotsOfInputs">
-          <div>
-            <label for="form__have">Стартовая сумма:</label>
-            <input type="number" min="0" name="form__have" placeholder="Нач. взнос" class="form__have form__have-change inputBox2" step="0.01"
-              required value="${elem.principal}">
+        <label class="goal__label">
+          <p class="goal__description">Стартовая сумма</p>
+          <div class="goal__input-container">
+            <span class="goal__placeholder">₽</span>
+            <input class="goal__input form__have inputBox2 form__have-change" type="number" placeholder="400,000" name="form__have" required value="${elem.principal}">
           </div>
-          <div>
-            <label for="form__percent">Процентная ставка:</label>
-            <input type="number" min="0" name="form__percent" placeholder="Процент, %" class="form__percent form__percent-change inputBox2" step="0.1"
-              required value="${elem.interest}">
+         
+        </label>
+      
+
+        <label class="goal__label">
+          <p class="goal__description">Процентная ставка</p>
+          <div class="goal__input-container">
+            <span class="goal__placeholder">%</span>
+            <input class="goal__input form__percent inputBox2 form__percent-change" type="number" placeholder="10.5" name="form__percent" required value="${elem.interest}">
           </div>
-          <div>
-            <label for="form__time">Срок (в мес.):</label><br>
-            <input type="number" name="form__time" min="1" max="12" placeholder="Срок, мес." class="form__time form__time-change inputBox2" required value="${elem.period}">
-            <input type="range" min="1" max="12" class="form__dragger form__dragger-change inputBox2">
+        </label>
+        
+
+        <label class="goal__label">
+          <div class="goal__description-container">
+            <p class="goal__description">Срок</p>
+            <p class="goal__description">Мес.</p>
+          </div>
+          <!-- <input type="range" min="1" max="12" class="dragger"> -->
+          <div class="goal__range range">
+           
+            <!-- <div class="range__trace">
+              <div class="range__tracer"></div>
+              <div class="range__passed"></div>
+            </div> -->
+            <!-- <input type="range" min="1" max="12" class="dragger"> -->
+
+            <input type="number" name="form__time" min="1" max="12" placeholder="Срок, мес." class="form__time form__time-change inputBox2"
+              required hidden value="${elem.period}">
+              <input type="range" min="1" max="12" class="form__dragger inputBox2 form__dragger-change" list="tickmarks" value="7">
+              <datalist id="tickmarks">
+  
+                <option value="1">
+                <option value="2">
+                <option value="3">
+                <option value="4">
+                <option value="5">
+                <option value="6">
+                <option value="7">
+                <option value="8">
+                <option value="9">
+                <option value="10">
+                <option value="11">
+                <option value="12">
+              </datalist>
+              <div class="range__parts">
+                <p class="number">1</p>
+                <p class="number">2</p>
+                <p class="number">3</p>
+                <p class="number">4</p>
+                <p class="number">5</p>
+                <p class="number">6</p>
+                <p class="number">7</p>
+                <p class="number">8</p>
+                <p class="number">9</p>
+                <p class="number">10</p>
+                <p class="number">11</p>
+                <p class="number">12</p>
+              </div>
+          </div>
+         
+        </label>
+
+        <div class="goal__buttons">
+          <button  class="goal__button goal__button_submit make__change">Изменить</button>
+          <button  class="goal__button goal__button_reset make__discard" type="reset">Отмена</button>
+        </div>
+
+       
+
+      </section>
+
+      <section class="goal__payment payment">
+        <h1 class="payment__title">Месячный платёж</h1>
+        <!-- <label for="output">Ежемесячное пополнение:</label> -->
+        <div class="payment__body">
+          <div class="output__container">
+          <input class="output form__output-change" name="form__output" readonly  value="${elem.replenishment}">
           </div>
         </div>
-        <label for="form__output">Ежемесячное пополнение:</label>
-        <input class="form__output form__output-change" min="0" placeholder="***" name="form__output" readonly value="${elem.replenishment}">
-  
-        <div class="form__make">
-          <button class="button make__create make__change">Изменить</button>
-          <button class="button make__discard" type="button">Отмена</button>
-        </div>
-  
-      </form>`;
+
+      </section>
+
+
+    </form>
+      `;
 
         document.querySelector('.new-form').append(changeitem);
 
@@ -211,7 +289,7 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
           element.addEventListener('input', () => {
             let principal = document.querySelector('.form__have-change').value;
             let interest = document.querySelector('.form__percent-change').value;
-            let period = document.querySelector('.form__time-change').value;
+            let period = document.querySelector('.form__dragger-change').value;
             let required = document.querySelector('.form__need-change').value;
 
             if (!(principal && interest && period && required)) return;
@@ -327,14 +405,14 @@ document.querySelectorAll('.inputBox').forEach((element) => {
 
     if (!(principal && interest && period && required)) return;
 
-    document.querySelector('.form__output').value = (required - (principal * ((1 + interest / (100 * 12)) ** period))) * (interest / (100 * 12)) * (1 / ((1 + interest / (100 * 12)) ** period - 1));
-    document.querySelector('.form__output').value = Number(document.querySelector('.form__output').value).toFixed(2);
+    document.querySelector('.output').value = (required - (principal * ((1 + interest / (100 * 12)) ** period))) * (interest / (100 * 12)) * (1 / ((1 + interest / (100 * 12)) ** period - 1));
+    document.querySelector('.output').value = Number(document.querySelector('.output').value).toFixed(2);
     if (+interest === 0) {
-      document.querySelector('.form__output').value = (required - principal) / period;
-      document.querySelector('.form__output').value = Number(document.querySelector('.form__output').value).toFixed(2);
+      document.querySelector('.output').value = (required - principal) / period;
+      document.querySelector('.output').value = Number(document.querySelector('.output').value).toFixed(2);
     }
-    if (document.querySelector('.form__output').value <= 0) {
-      document.querySelector('.form__output').value = '--------------------';
+    if (document.querySelector('.output').value <= 0) {
+      document.querySelector('.output').value = '--------------------';
     }
   })
 })
@@ -358,3 +436,6 @@ document.querySelector('.logoBtn').addEventListener('click', () => {
 })
 
 
+document.querySelector('.form__dragger').addEventListener('input', () => {
+  console.log(document.querySelector('.form__dragger').value)
+})

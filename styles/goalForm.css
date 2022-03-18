@@ -6,86 +6,33 @@
 }
 
 form {
+    margin: 150px auto;
+    padding: 0;
+    background-color: transparent;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 130px auto;
-    width: 36%;
-    padding: 20px 0;
-    border: 2px solid black;
     border-radius: 10px;
-    background-color: rgb(215, 245, 255);
+    overflow: hidden;
+    flex-direction: row;
+    align-items: stretch;
+    border: 0;
+    width: 800px;
+    box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
 }
 
-input {
-    background-color: rgb(10, 180, 247);
-    padding: 5px;
-    border-radius: 10px;
+
+.output {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
 }
 
 input::placeholder {
     color: rgba(252, 247, 247, 0.795);
 }
 
-.button {
-    background-color: rgb(10, 180, 247);
-    padding: 5px;
-    border-radius: 10px;
-    width: 80px;
-}
 
-.form__title {
-    width: 220px;
-    height: 50px;
-    font-size: 26px;
-    text-align: center;
-}
-
-.form__need {
-    width: 150px;
-    height: 40px;
-    font-size: 24px;
-    text-align: center;
-    margin-top: 10px;
-}
-
-.form__have, .form__percent, .form__time {
-    width: 100px;
-}
-
-.form__lotsOfInputs {
-    width: 90%;
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.form__output {
-    margin-top: 10px;
-    width: 150px;
-    height: 50px;
-    font-size: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid black;
-    border-radius: 10px;
-    background-color: rgb(10, 180, 247);
-}
-
-.form__make {
-    display: flex;
-    justify-content: space-between;
-    width: 190px;
-    margin-top: 10px;
-}
-
-.make__create, .make__change {
-    background-color: rgb(56, 199, 139);
-
-
-}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -162,11 +109,187 @@ label {
 
 .loadDiv {
     padding: 10px;
-    margin: 100px auto;
-    width: 350px;
+    margin: 220px auto;
+    width: fit-content;
     border: 2px solid black;
     border-radius: 5px;
     background-color: white;
     font-size: 40px;
     color:#03989e;
+}
+
+
+
+
+
+
+
+
+
+
+.lastForm {
+  width: 500px;
+  height: 500px;
+  flex-direction: column;
+  
+}
+
+.goal {
+  padding: 0;
+  background-color: transparent;
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-direction: row;
+  align-items: stretch;
+  border: 0;
+  width: 800px;
+  box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+ 
+}
+
+.goal__label {
+  color: #656565;
+}
+
+.output__container {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.payment__body {
+  padding: 10px;
+}
+
+.payment__title {
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  background-color: rgba(74, 134, 255, 0.3);
+}
+
+
+
+.goal__input-container {
+  position: relative;
+  
+}
+
+.goal__placeholder {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+
+.goal__data {
+ width: 66%;
+ padding: 30px;
+ background-color: white;
+}
+
+.goal__payment {
+  background-color: #383838;
+  width: 34%;
+  color: white;
+}
+
+.goal__input {
+  background-color: white;
+  color: black;
+  width: 100%;
+  border: 0;
+  padding-left: 20px;
+  border-radius: 0;
+  outline: 0;
+  border-bottom: 2px solid #b4b1b1;
+  font-size: 16px;
+
+}
+.goal__input-container{
+  margin-top: 8px;
+}
+
+.goal__label:not(:first-child) .goal__description{
+    margin-top: 20px;
+}
+.goal__range {
+  margin-top: 10px;
+}
+
+.goal__input::placeholder {
+  color: #b4b1b1;
+}
+
+.goal__description-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.range__trace {
+  background-color: #656565;
+  height: 10px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.range__passed {
+  width:0;
+  height: 100%;
+  border-radius: 5px;
+  background-color: #4A86FF;
+}
+
+.range__parts {
+  padding-left: 2px;
+  display: flex;
+  margin-top: 6px;
+  user-select: none;
+}
+
+.range__parts {
+  justify-content: space-between;
+}
+
+.range__tracer {
+  background-color: #0b59f5;
+  height: 20px;
+  cursor: pointer;
+  width: 20px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.goal__buttons {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.goal__button {
+  border-radius: 4px;
+  background-color: rgb(10, 180, 247);
+  padding: 6px 30px;
+  width: auto;
+  border: 0;
+  outline: 0;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.goal__button_reset {
+  background-color: #F7234C;
+}
+
+.form__dragger {
+  width: 470px;
+}
+
+.number {
+  width: 10px;
 }
