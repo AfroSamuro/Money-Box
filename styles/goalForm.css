@@ -1,0 +1,172 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 130px auto;
+    width: 36%;
+    padding: 20px 0;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgb(215, 245, 255);
+}
+
+input {
+    background-color: rgb(10, 180, 247);
+    padding: 5px;
+    border-radius: 10px;
+}
+
+input::placeholder {
+    color: rgba(252, 247, 247, 0.795);
+}
+
+.button {
+    background-color: rgb(10, 180, 247);
+    padding: 5px;
+    border-radius: 10px;
+    width: 80px;
+}
+
+.form__title {
+    width: 220px;
+    height: 50px;
+    font-size: 26px;
+    text-align: center;
+}
+
+.form__need {
+    width: 150px;
+    height: 40px;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.form__have, .form__percent, .form__time {
+    width: 100px;
+}
+
+.form__lotsOfInputs {
+    width: 90%;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form__output {
+    margin-top: 10px;
+    width: 150px;
+    height: 50px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgb(10, 180, 247);
+}
+
+.form__make {
+    display: flex;
+    justify-content: space-between;
+    width: 190px;
+    margin-top: 10px;
+}
+
+.make__create, .make__change {
+    background-color: rgb(56, 199, 139);
+
+
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+label {
+    color: black;
+}
+
+.change__title {
+    width: 220px;
+    height: 50px;
+    font-size: 26px;
+    text-align: center;
+}
+
+.change__need {
+    width: 150px;
+    height: 40px;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.change__have, .change__percent, .change__time {
+    width: 100px;
+}
+
+.change__lotsOfInputs {
+    width: 90%;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.change__output {
+    margin-top: 10px;
+    width: 150px;
+    height: 50px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgb(10, 180, 247);
+}
+
+.change__make {
+    display: flex;
+    justify-content: space-between;
+    width: 190px;
+    margin-top: 10px;
+}
+
+
+
+.load {
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(16, 16, 16, 0.6);
+}
+
+.loadDiv {
+    padding: 10px;
+    margin: 100px auto;
+    width: 350px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 40px;
+    color:#03989e;
+}
