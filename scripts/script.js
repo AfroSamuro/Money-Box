@@ -2,7 +2,7 @@ let array = [];
 
 class Target {
   constructor(goal, required, principal, interest, period, replenishment) {
-    this.id = new Date().getTime()
+    this.id = new Date().getTime();
     this.goal = goal;
     this.required = required;
     this.principal = principal;
@@ -108,6 +108,15 @@ document.querySelector('.make__cancel').addEventListener('click', () => {
 });
 
 document.querySelector('.listBtn').addEventListener('click', function renderlist() {
+
+
+  document.querySelector('.listBtn').style.color = "#03989e";
+  document.querySelector('.createBtn').style.color = "#8b8b8b";
+  document.querySelector('.list-icon').src = "./images/list.svg";
+  document.querySelector('.create-icon').src = "./images/graycreate.svg";
+  document.querySelector('.listBtn').style.backgroundColor = "rgb(255, 255, 255)";
+  document.querySelector('.createBtn').style.backgroundColor = "rgb(244, 242, 243)";
+
   const form = document.querySelector('.goal__form');
   form.classList.add('hidden');
 
@@ -115,7 +124,6 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
     document.querySelector('.list__goals-none').classList.remove('hidden');
 
   } else {
-    document.querySelector('.list__goals-none').classList.add('hidden');
     document.querySelector('.list__of-goals').classList.remove('hidden');
     document.querySelector('.list__of-goals').innerHTML = '';
 
@@ -143,6 +151,7 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
       document.querySelector('.list__of-goals').append(item);
 
       item.addEventListener('click', (e) => {
+      
         let grayarea = document.createElement('div');
         grayarea.classList.add('gray');
         document.querySelector('.new-form').append(grayarea);
@@ -179,8 +188,8 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
         <input class="form__output form__output-change" min="0" placeholder="***" name="form__output" readonly value="${elem.replenishment}">
   
         <div class="form__make">
-          <button class="make__create make__change">Изменить</button>
-          <button class="make__discard" type="button">Отмена</button>
+          <button class="button make__create make__change">Изменить</button>
+          <button class="button make__discard" type="button">Отмена</button>
         </div>
   
       </form>`;
@@ -279,6 +288,9 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
               document.querySelector('.list__goals-none').classList.remove('hidden');
             }
           })
+          document.querySelector('.myChart').addEventListener('click', (e) => {
+            e.stopPropagation();
+          })
         });
 
       })
@@ -295,6 +307,9 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
         }
       })
     });
+    document.querySelector('.myChart').addEventListener('click', (e) => {
+      e.stopPropagation();
+    })
   }
   document.querySelector('.myChart').addEventListener('click', (e) => {
     e.stopPropagation();
@@ -327,6 +342,13 @@ document.querySelector('.createBtn').addEventListener('click', () => {
   form.classList.remove('hidden');
   document.querySelector('.list__of-goals').classList.add('hidden');
   document.querySelector('.list__goals-none').classList.add('hidden');
+
+  document.querySelector('.createBtn').style.color = "#03989e";
+  document.querySelector('.listBtn').style.color = "#8b8b8b";
+  document.querySelector('.list-icon').src = "./images/graylist.svg";
+  document.querySelector('.create-icon').src = "./images/create.svg";
+  document.querySelector('.createBtn').style.backgroundColor = "rgb(255, 255, 255)";
+  document.querySelector('.listBtn').style.backgroundColor = "rgb(244, 242, 243)";
 });
 
 document.querySelector('.logoBtn').addEventListener('click', () => {
