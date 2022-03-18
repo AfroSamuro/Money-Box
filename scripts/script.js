@@ -56,7 +56,7 @@ function appendChart(canvas, start, refills, bankPayment) {
 }
 
 function donutStopPropagation(elem) {
-  elem.querySelector('.myChart').addEventListener('click', (e) => {
+  elem.querySelector('.myChart')?.addEventListener('click', (e) => {
     e.stopPropagation();
   })
 }
@@ -99,7 +99,8 @@ document.querySelector('.goal').addEventListener('submit', (event) => {
   }, 1000)
 
   userForm.reset();
-  console.log(data);
+  document.querySelector('.chart-wrapper').innerHTML = '';
+
   array.push(new Target(`${data.get('title__input')}`, `${data.get('need__input')}`, `${data.get('form__have')}`,
     `${data.get('form__percent')}`, `${data.get('form__time')}`, `${data.get('form__output')}`));
 
@@ -109,6 +110,7 @@ document.querySelector('.goal').addEventListener('submit', (event) => {
 
 document.querySelector('.make__cancel').addEventListener('click', () => {
   userForm.reset();
+  document.querySelector('.chart-wrapper').innerHTML = '';
 });
 
 document.querySelector('.listBtn').addEventListener('click', function renderlist() {
@@ -158,7 +160,7 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
       document.querySelector('.list__of-goals').append(item);
 
       item.addEventListener('click', (e) => {
-      
+
         let grayarea = document.createElement('div');
         grayarea.classList.add('gray');
         document.querySelector('.new-form').append(grayarea);
@@ -221,7 +223,7 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
 
             <input type="number" name="form__time" min="1" max="12" placeholder="Срок, мес." class="form__time form__time-change inputBox2"
               required hidden value="${elem.period}">
-              <input type="range" min="1" max="12" class="form__dragger inputBox2 form__dragger-change" list="tickmarks" value="7">
+              <input type="range" min="1" max="12" class="form__dragger inputBox2 form__dragger-change" list="tickmarks" value="${elem.period}">
               <datalist id="tickmarks">
   
                 <option value="1">
@@ -271,6 +273,9 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
           <div class="output__container">
           <input class="output form__output-change" name="form__output" readonly  value="${elem.replenishment}">
           </div>
+          <div class="chart-wrapper-change">
+            
+          </div>
         </div>
 
       </section>
@@ -303,6 +308,12 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
             if (document.querySelector('.form__output-change').value <= 0) {
               document.querySelector('.form__output-change').value = '--------------------';
             }
+            document.querySelector('.chart-wrapper-change').innerHTML = '';
+            document.querySelector('.chart-wrapper-change').innerHTML = `<div class="myChart formChart"><canvas></canvas></div>`;
+            appendChart(document.querySelector('.chart-wrapper-change canvas'),
+              principal,
+              document.querySelector('.form__output-change').value * period,
+              required - principal - document.querySelector('.form__output-change').value * period)
           })
         })
 
@@ -316,6 +327,16 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
         inputBox.addEventListener('input', (e) => {
           slider.value = e.target.value;
         })
+        let principal = document.querySelector('.form__have-change').value;
+        let interest = document.querySelector('.form__percent-change').value;
+        let period = document.querySelector('.form__dragger-change').value;
+        let required = document.querySelector('.form__need-change').value;
+        document.querySelector('.chart-wrapper-change').innerHTML = '';
+        document.querySelector('.chart-wrapper-change').innerHTML = `<div class="myChart formChart"><canvas></canvas></div>`;
+        appendChart(document.querySelector('.chart-wrapper-change canvas'),
+          principal,
+          document.querySelector('.form__output-change').value * period,
+          required - principal - document.querySelector('.form__output-change').value * period)
 
         document.querySelector('.change__form').addEventListener('submit', (event) => {
           event.preventDefault();
@@ -375,7 +396,7 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
               document.querySelector('.list__goals-none').classList.remove('hidden');
             }
           })
-         
+
         });
 
       })
@@ -402,7 +423,6 @@ document.querySelectorAll('.inputBox').forEach((element) => {
     let interest = document.querySelector('.form__percent').value;
     let period = document.querySelector('.form__time').value;
     let required = document.querySelector('.form__need').value;
-
     if (!(principal && interest && period && required)) return;
 
     document.querySelector('.output').value = (required - (principal * ((1 + interest / (100 * 12)) ** period))) * (interest / (100 * 12)) * (1 / ((1 + interest / (100 * 12)) ** period - 1));
@@ -414,6 +434,12 @@ document.querySelectorAll('.inputBox').forEach((element) => {
     if (document.querySelector('.output').value <= 0) {
       document.querySelector('.output').value = '--------------------';
     }
+    document.querySelector('.chart-wrapper').innerHTML = '';
+    document.querySelector('.chart-wrapper').innerHTML = `<div class="myChart formChart"><canvas></canvas></div>`;
+    appendChart(document.querySelector('canvas'),
+      principal,
+      document.querySelector('.output').value * period,
+      required - principal - document.querySelector('.output').value * period)
   })
 })
 
@@ -436,12 +462,9 @@ document.querySelector('.logoBtn').addEventListener('click', () => {
 })
 
 
-document.querySelector('.form__dragger').addEventListener('input', () => {
-  console.log(document.querySelector('.form__dragger').value)
-})
 
 document.querySelectorAll('img').forEach((element) => {
   element.ondragstart = function () {
-  return false;
-};
+    return false;
+  };
 })

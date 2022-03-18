@@ -293,3 +293,7 @@ label {
 .number {
   width: 10px;
 }
+
+div.formChart {
+  padding: 60px 0 0 0;
+}
