@@ -11,6 +11,10 @@
     
 }
 
+.goal__plot {
+    margin-top: 80px;
+}
+
 .goal {
     padding: 0;
     background-color: transparent;

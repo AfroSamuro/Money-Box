@@ -1,6 +1,6 @@
 class Range {
   container;
-  trace 
+  trace
   tracer
 
   value = 1;
@@ -12,7 +12,7 @@ class Range {
     this.container = range;
 
     this.trace = this.container.querySelector('.range__trace');
-    this.tracer =  this.container.querySelector('.range__tracer');
+    this.tracer = this.container.querySelector('.range__tracer');
     this.parts = this.container.querySelector('.range__parts');
     this.passed = this.container.querySelector('.range__passed');
 
@@ -33,8 +33,8 @@ class Range {
 
     this.parts.querySelector(':first-child').style.color = '#4A86FF';
 
-    document.addEventListener('mousemove', (e) =>  {
-      if(!this.isDown) return;
+    document.addEventListener('mousemove', (e) => {
+      if (!this.isDown) return;
       this.setTracer(e.pageX)
       this.previousX = e.pageX;
     })
@@ -42,12 +42,12 @@ class Range {
 
 
   setTracer(cursorX) {
-    
-    if(cursorX < this.min || cursorX > this.max) return
+
+    if (cursorX < this.min || cursorX > this.max) return
     const path = cursorX - this.min
     const bound = Math.floor(((path / this.trace.offsetWidth * 12)));
-    
-    if(bound + 1 !== this.value) {
+
+    if (bound + 1 !== this.value) {
       this.value = bound + 1
       this.onChange?.(this.value)
 
@@ -62,8 +62,8 @@ class Range {
       });
     };
 
-  
-  
+
+
     this.passed.style.width = path + 'px'
     this.tracer.style.left = path + 'px'
   }
@@ -89,6 +89,9 @@ class Target {
     this.period = period;
     this.replenishment = replenishment;
   }
+
+  getReffils = () =>  this.replenishment * this.period;
+  getBankPayment = () => this.required - this.principal - this.getReffils();
 }
 
 function appendChart(canvas, start, refills, bankPayment) {
@@ -147,8 +150,10 @@ const userForm = document.querySelector('form');
 const output = userForm.querySelector('output')
 
 range.onChange = () => {
-  calculateReplenishment()
+  calculateReplenishment(userForm)
 }
+
+
 
 userForm.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -178,7 +183,8 @@ userForm.addEventListener('submit', (event) => {
 });
 
 userForm.addEventListener('reset', () => {
-  range.reset()
+  range.reset();
+  userForm.querySelector('canvas').style.display = 'none'
 });
 
 document.querySelector('.listBtn').addEventListener('click', function renderlist() {
@@ -228,7 +234,7 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
       document.querySelector('.list__of-goals').append(item);
 
       item.addEventListener('click', (e) => {
-      
+
         let grayarea = document.createElement('div');
         grayarea.classList.add('gray');
         document.querySelector('.new-form').append(grayarea);
@@ -356,7 +362,7 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
               document.querySelector('.list__goals-none').classList.remove('hidden');
             }
           })
-         
+
         });
 
       })
@@ -382,9 +388,7 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
 
 userForm.querySelectorAll('input:not([name=title__input])').forEach((element) => {
   element.addEventListener('input', () => {
-    calculateReplenishment()
-
-
+    calculateReplenishment(userForm)
   })
 })
 
@@ -407,30 +411,47 @@ document.querySelector('.logoBtn').addEventListener('click', () => {
 })
 
 
-function calculateReplenishment () {
-  const { replenishment }  = createTargetFromForm(userForm)
-  output.value = isNaN(replenishment) ? '╮(︶▽︶)╭' 
-  : replenishment < 0 ? 'Некорректные значения ( ͡° ͜ʖ ͡°)' : "₽ " +  replenishment;
+function calculateReplenishment(form) {
+  const { replenishment,  principal, ...target } = createTargetFromForm(userForm)
+  let canvas = form.querySelector('canvas')
+
+  if(!isNaN(replenishment) && replenishment >= 0 ) {
+
+
+    canvas?.replaceWith(createCanvas());
+    appendChart(form.querySelector('canvas'), principal, target.getReffils(), target.getBankPayment());
+  } else {
+    userForm.querySelector('canvas').style.display = 'none'
+  }
+
+  output.value = isNaN(replenishment) ? 'Заполните все поля ╮(︶▽︶)╭'
+    : replenishment < 0 ? 'Некорректные значения ( ͡° ͜ʖ ͡°)' : "₽ " + replenishment;
 }
- 
+
+function createCanvas() {
+  const canvas = document.createElement('canvas');
+  canvas.classList.add('goal__plot');
+  return canvas;
+}
+
 
 function createTargetFromForm(form) {
   const data = new FormData(form)
-  const required =  data.get('need__input');
-  const interest =  data.get('form__percent');
-  const title = data.get('title__input'); 
+  const required = data.get('need__input');
+  const interest = data.get('form__percent');
+  const title = data.get('title__input');
   const period = range.value;
   const principal = data.get('form__have');
-  const result = (required && interest && period && principal) 
-  
-  ? (required - (principal * ((1 + interest / (100 * 12)) ** period))) * (interest / (100 * 12)) * (1 / ((1 + interest / (100 * 12)) ** period - 1))
-  : NaN
+  const result = (required && interest && period && principal)
+
+    ? (required - (principal * ((1 + interest / (100 * 12)) ** period))) * (interest / (100 * 12)) * (1 / ((1 + interest / (100 * 12)) ** period - 1))
+    : NaN
 
   return new Target(
     title,
     required,
-    principal, 
-    interest, 
+    principal,
+    interest,
     period,
     isNaN(result) ? NaN : +result.toFixed(2),
   )
