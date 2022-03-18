@@ -88,7 +88,7 @@ let array = [];
 
 class Target {
   constructor(goal, required, principal, interest, period, replenishment) {
-    this.id = new Date().getTime()
+    this.id = new Date().getTime();
     this.goal = goal;
     this.required = required;
     this.principal = principal;
@@ -96,6 +96,55 @@ class Target {
     this.period = period;
     this.replenishment = replenishment;
   }
+}
+
+function appendChart(canvas, start, refills, bankPayment) {
+  const data = {
+    labels: [
+      'Начальный взнос',
+      'Пополнения',
+      'Процентные начисления',
+    ],
+
+    datasets: [{
+      label: 'My First Dataset',
+      data: [start, refills, bankPayment],
+      backgroundColor: [
+        'rgb(76, 70, 255)',
+        'rgb(41, 255, 242)',
+        'rgb(107, 225, 71)'
+      ],
+    }]
+  };
+
+  const config = {
+    type: 'doughnut',
+    data: data,
+    options: {
+      cutout: '85%',
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: {
+            boxWidth: 16,
+            color: 'white',
+            padding: 20,
+          },
+        },
+      }
+    }
+  };
+
+  new Chart(
+    canvas,
+    config
+  );
+}
+
+function donutStopPropagation(elem) {
+  elem.querySelector('.myChart').addEventListener('click', (e) => {
+    e.stopPropagation();
+  })
 }
 
 
@@ -130,6 +179,10 @@ userForm.addEventListener('submit', (event) => {
   document.querySelector('main').append(blackscreen);
   document.querySelector('.load').append(loadDiv);
 
+  const donut = document.createElement('div');
+  donut.classList.add('myChart');
+
+
 
   setTimeout(() => {
     document.querySelector('.load').remove()
@@ -156,6 +209,15 @@ userForm.addEventListener('reset', () => {
 });
 
 document.querySelector('.listBtn').addEventListener('click', function renderlist() {
+
+
+  document.querySelector('.listBtn').style.color = "#03989e";
+  document.querySelector('.createBtn').style.color = "#8b8b8b";
+  document.querySelector('.list-icon').src = "./images/list.svg";
+  document.querySelector('.create-icon').src = "./images/graycreate.svg";
+  document.querySelector('.listBtn').style.backgroundColor = "rgb(255, 255, 255)";
+  document.querySelector('.createBtn').style.backgroundColor = "rgb(244, 242, 243)";
+
   const form = document.querySelector('.goal__form');
   form.classList.add('hidden');
 
@@ -163,7 +225,6 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
     document.querySelector('.list__goals-none').classList.remove('hidden');
 
   } else {
-    document.querySelector('.list__goals-none').classList.add('hidden');
     document.querySelector('.list__of-goals').classList.remove('hidden');
     document.querySelector('.list__of-goals').innerHTML = '';
 
@@ -176,13 +237,25 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
       <button class="list__button-delete">X</button>
       <p class="list__title">${elem.goal}</p>
       </div><p class="list__final-amount">Сумма: ${elem.required} руб</p>
-      <hr>
+      
       <p class="list__monthly">Пополнение: ${elem.replenishment} руб</p>
+      <div class="myChart">
+        <canvas></canvas>
+      </div>
       `
       item.innerHTML = html;
+
+      donutStopPropagation(item);
+
+      appendChart(item.querySelector('canvas'),
+        elem.principal,
+        elem.replenishment * elem.period,
+        elem.required - elem.principal - elem.replenishment * elem.period)
+
       document.querySelector('.list__of-goals').append(item);
 
       item.addEventListener('click', (e) => {
+      
         let grayarea = document.createElement('div');
         grayarea.classList.add('gray');
         document.querySelector('.new-form').append(grayarea);
@@ -211,7 +284,7 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
           </div>
           <div>
             <label for="form__time">Срок (в мес.):</label><br>
-            <input type="number" name="form__time" placeholder="Срок, мес." class="form__time form__time-change inputBox2" required value="${elem.period}">
+            <input type="number" name="form__time" min="1" max="12" placeholder="Срок, мес." class="form__time form__time-change inputBox2" required value="${elem.period}">
             <input type="range" min="1" max="12" class="form__dragger form__dragger-change inputBox2">
           </div>
         </div>
@@ -219,8 +292,8 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
         <input class="form__output form__output-change" min="0" placeholder="***" name="form__output" readonly value="${elem.replenishment}">
   
         <div class="form__make">
-          <button class="make__create make__change">Изменить</button>
-          <button class="make__discard" type="button">Отмена</button>
+          <button class="button make__create make__change">Изменить</button>
+          <button class="button make__discard" type="button">Отмена</button>
         </div>
   
       </form>`;
@@ -242,9 +315,10 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
 
             document.querySelector('.form__output-change').value = (required - (principal * ((1 + interest / (100 * 12)) ** period))) * (interest / (100 * 12)) * (1 / ((1 + interest / (100 * 12)) ** period - 1));
             document.querySelector('.form__output-change').value = Number(document.querySelector('.form__output-change').value).toFixed(2);
-            if (+interest === 0){document.querySelector('.form__output-change').value = (required - principal)/period;
-            document.querySelector('.form__output-change').value = Number(document.querySelector('.form__output-change').value).toFixed(2);
-          };
+            if (+interest === 0) {
+              document.querySelector('.form__output-change').value = (required - principal) / period;
+              document.querySelector('.form__output-change').value = Number(document.querySelector('.form__output-change').value).toFixed(2);
+            };
             if (document.querySelector('.form__output-change').value <= 0) {
               document.querySelector('.form__output-change').value = '--------------------';
             }
@@ -262,7 +336,7 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
           slider.value = e.target.value;
         })
 
-        document.querySelector('.make__change').addEventListener('click', (event) => {
+        document.querySelector('.change__form').addEventListener('submit', (event) => {
           event.preventDefault();
 
           let blackscreen = document.createElement('div');
@@ -294,10 +368,21 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
       <button class="list__button-delete">X</button>
       <p class="list__title">${obj.goal}</p>
       </div><p class="list__final-amount">Сумма: ${obj.required} руб</p>
-      <hr>
+      
       <p class="list__monthly">Пополнение: ${obj.replenishment} руб</p>
+      <div class="myChart">
+        <canvas></canvas>
+      </div>
       `
           item.innerHTML = newHtml;
+
+          donutStopPropagation(item);
+
+          appendChart(item.querySelector('canvas'),
+            obj.principal,
+            obj.replenishment * obj.period,
+            obj.required - obj.principal - obj.replenishment * obj.period)
+
           item.querySelector('.list__button-delete').addEventListener('click', (e) => {
             e.stopPropagation();
             e.preventDefault();
@@ -309,6 +394,7 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
               document.querySelector('.list__goals-none').classList.remove('hidden');
             }
           })
+         
         });
 
       })
@@ -326,13 +412,17 @@ document.querySelector('.listBtn').addEventListener('click', function renderlist
       })
     });
   }
+  donutStopPropagation(document);
 })
+
 
 
 
 userForm.querySelectorAll('input:not([name=title__input])').forEach((element) => {
   element.addEventListener('input', () => {
     calculateReplenishment()
+
+
   })
 })
 
@@ -341,6 +431,13 @@ document.querySelector('.createBtn').addEventListener('click', () => {
   form.classList.remove('hidden');
   document.querySelector('.list__of-goals').classList.add('hidden');
   document.querySelector('.list__goals-none').classList.add('hidden');
+
+  document.querySelector('.createBtn').style.color = "#03989e";
+  document.querySelector('.listBtn').style.color = "#8b8b8b";
+  document.querySelector('.list-icon').src = "./images/graylist.svg";
+  document.querySelector('.create-icon').src = "./images/create.svg";
+  document.querySelector('.createBtn').style.backgroundColor = "rgb(255, 255, 255)";
+  document.querySelector('.listBtn').style.backgroundColor = "rgb(244, 242, 243)";
 });
 
 document.querySelector('.logoBtn').addEventListener('click', () => {
